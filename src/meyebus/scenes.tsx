@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { COLORS, FONT } from "./theme";
-import { LogoMark } from "./Logo";
+import { RealLogo } from "./assets";
 import { PhoneFrame } from "./PhoneFrame";
 import { CinematicBackground, BrandChip, Caption } from "./Stage";
 import { Icon } from "./ui";
@@ -34,8 +34,8 @@ export const IntroScene: React.FC = () => {
             />
           );
         })}
-        <div style={{ transform: `scale(${scale})`, filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.5))" }}>
-          <LogoMark size={320} />
+        <div style={{ transform: `scale(${scale})`, background: "#fff", borderRadius: 72, padding: 56, boxShadow: "0 40px 90px rgba(0,0,0,0.5)" }}>
+          <RealLogo width={300} />
         </div>
         <div
           style={{
@@ -100,7 +100,8 @@ export const PhoneScene: React.FC<{
   kicker: string;
   title: string;
   screenBg?: string;
-}> = ({ screen, kicker, title, screenBg }) => {
+  notch?: boolean;
+}> = ({ screen, kicker, title, screenBg, notch }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const enter = spring({ frame, fps, config: { damping: 18, mass: 0.9 } });
@@ -120,7 +121,7 @@ export const PhoneScene: React.FC<{
       >
         {/* glow under phone */}
         <div style={{ position: "absolute", inset: "auto 40px -40px 40px", height: 120, background: COLORS.blue, filter: "blur(70px)", opacity: 0.4, borderRadius: "50%" }} />
-        <PhoneFrame screenBg={screenBg}>{screen}</PhoneFrame>
+        <PhoneFrame screenBg={screenBg} notch={notch}>{screen}</PhoneFrame>
       </div>
       <Caption kicker={kicker} title={title} />
     </AbsoluteFill>
@@ -139,8 +140,8 @@ export const OutroScene: React.FC = () => {
     <AbsoluteFill>
       <CinematicBackground />
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", fontFamily: FONT }}>
-        <div style={{ transform: `scale(${interpolate(logo, [0, 1], [0.6, 1])})`, opacity: logo, filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.5))" }}>
-          <LogoMark size={270} />
+        <div style={{ transform: `scale(${interpolate(logo, [0, 1], [0.6, 1])})`, opacity: logo, background: "#fff", borderRadius: 60, padding: 46, boxShadow: "0 40px 90px rgba(0,0,0,0.5)" }}>
+          <RealLogo width={250} />
         </div>
         <div style={{ marginTop: 40, opacity: tag, transform: `translateY(${(1 - tag) * 16}px)`, color: "rgba(255,255,255,0.88)", fontSize: 42, fontWeight: 600 }}>
           La sérénité, à chaque trajet.

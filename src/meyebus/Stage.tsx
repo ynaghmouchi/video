@@ -1,7 +1,8 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, interpolate, spring, useVideoConfig } from "remotion";
 import { COLORS, FONT } from "./theme";
-import { LogoMark, Wordmark } from "./Logo";
+import { Wordmark } from "./Logo";
+import { RealLogo } from "./assets";
 
 export const CinematicBackground: React.FC<{ variant?: "deep" | "light" }> = ({ variant = "deep" }) => {
   const frame = useCurrentFrame();
@@ -65,7 +66,9 @@ export const BrandChip: React.FC = () => {
           backdropFilter: "blur(8px)",
         }}
       >
-        <LogoMark size={52} showText={false} />
+        <div style={{ background: "#fff", borderRadius: 14, padding: 5, display: "flex" }}>
+          <RealLogo width={40} />
+        </div>
         <Wordmark size={34} color="#fff" />
       </div>
     </div>

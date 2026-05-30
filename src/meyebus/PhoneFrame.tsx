@@ -39,7 +39,8 @@ export const StatusBar: React.FC<{ dark?: boolean }> = ({ dark }) => {
 export const PhoneFrame: React.FC<{
   children: React.ReactNode;
   screenBg?: string;
-}> = ({ children, screenBg = COLORS.bg }) => (
+  notch?: boolean;
+}> = ({ children, screenBg = COLORS.bg, notch = true }) => (
   <div
     style={{
       width: PHONE_W,
@@ -63,19 +64,21 @@ export const PhoneFrame: React.FC<{
       }}
     >
       {/* dynamic island / notch */}
-      <div
-        style={{
-          position: "absolute",
-          top: 12,
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: 132,
-          height: 28,
-          borderRadius: 16,
-          background: "#0A1626",
-          zIndex: 30,
-        }}
-      />
+      {notch ? (
+        <div
+          style={{
+            position: "absolute",
+            top: 12,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: 132,
+            height: 28,
+            borderRadius: 16,
+            background: "#0A1626",
+            zIndex: 30,
+          }}
+        />
+      ) : null}
       {children}
     </div>
   </div>

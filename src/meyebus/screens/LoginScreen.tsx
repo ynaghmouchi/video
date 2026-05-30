@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrentFrame, interpolate } from "remotion";
 import { COLORS } from "../theme";
 import { StatusBar, INNER_W } from "../PhoneFrame";
-import { LogoMark, Wordmark } from "../Logo";
+import { LogoMark } from "../Logo";
 import { Icon } from "../ui";
 
 const Field: React.FC<{
@@ -47,13 +47,10 @@ export const LoginScreen: React.FC = () => {
     <div style={{ width: "100%", height: "100%", background: COLORS.bg }}>
       <StatusBar />
       <div style={{ padding: "0 44px", display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <div style={{ marginTop: 80, filter: "drop-shadow(0 18px 30px rgba(14,42,71,0.18))" }}>
-          <LogoMark size={150} />
+        <div style={{ marginTop: 56, filter: "drop-shadow(0 18px 30px rgba(14,42,71,0.18))" }}>
+          <LogoMark size={188} />
         </div>
-        <div style={{ marginTop: 18 }}>
-          <Wordmark size={56} />
-        </div>
-        <div style={{ marginTop: 8, fontSize: 24, color: COLORS.textMuted, fontWeight: 600 }}>
+        <div style={{ marginTop: 14, fontSize: 24, color: COLORS.textMuted, fontWeight: 600 }}>
           Espace Parent
         </div>
 

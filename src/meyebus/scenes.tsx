@@ -1,7 +1,7 @@
 import React from "react";
 import { AbsoluteFill, useCurrentFrame, useVideoConfig, spring, interpolate } from "remotion";
 import { COLORS, FONT } from "./theme";
-import { LogoMark, Wordmark } from "./Logo";
+import { LogoMark } from "./Logo";
 import { PhoneFrame } from "./PhoneFrame";
 import { CinematicBackground, BrandChip, Caption } from "./Stage";
 import { Icon } from "./ui";
@@ -12,8 +12,7 @@ export const IntroScene: React.FC = () => {
   const { fps } = useVideoConfig();
   const pop = spring({ frame, fps, config: { damping: 12, stiffness: 140, mass: 0.9 } });
   const scale = interpolate(pop, [0, 1], [0.4, 1]);
-  const wm = spring({ frame: frame - 14, fps, config: { damping: 20 } });
-  const tag = spring({ frame: frame - 26, fps, config: { damping: 22 } });
+  const tag = spring({ frame: frame - 24, fps, config: { damping: 22 } });
 
   return (
     <AbsoluteFill>
@@ -27,27 +26,24 @@ export const IntroScene: React.FC = () => {
               key={i}
               style={{
                 position: "absolute",
-                width: 320 + r * 360,
-                height: 320 + r * 360,
+                width: 340 + r * 380,
+                height: 340 + r * 380,
                 borderRadius: "50%",
-                border: `2px solid rgba(255,255,255,${0.25 * (1 - r)})`,
+                border: `2px solid rgba(255,255,255,${0.22 * (1 - r)})`,
               }}
             />
           );
         })}
-        <div style={{ transform: `scale(${scale})`, background: "#fff", borderRadius: 64, padding: 46, boxShadow: "0 40px 90px rgba(0,0,0,0.45)" }}>
-          <LogoMark size={240} />
-        </div>
-        <div style={{ marginTop: 50, opacity: wm, transform: `translateY(${(1 - wm) * 22}px)` }}>
-          <Wordmark size={96} color="#fff" />
+        <div style={{ transform: `scale(${scale})`, filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.5))" }}>
+          <LogoMark size={320} />
         </div>
         <div
           style={{
-            marginTop: 24,
+            marginTop: 44,
             opacity: tag,
             transform: `translateY(${(1 - tag) * 18}px)`,
-            color: "rgba(255,255,255,0.82)",
-            fontSize: 38,
+            color: "rgba(255,255,255,0.86)",
+            fontSize: 40,
             fontWeight: 600,
           }}
         >
@@ -136,21 +132,17 @@ export const OutroScene: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const logo = spring({ frame, fps, config: { damping: 14 } });
-  const wm = spring({ frame: frame - 10, fps, config: { damping: 20 } });
-  const tag = spring({ frame: frame - 22, fps, config: { damping: 22 } });
-  const cta = spring({ frame: frame - 34, fps, config: { damping: 16 } });
+  const tag = spring({ frame: frame - 18, fps, config: { damping: 22 } });
+  const cta = spring({ frame: frame - 30, fps, config: { damping: 16 } });
 
   return (
     <AbsoluteFill>
       <CinematicBackground />
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", fontFamily: FONT }}>
-        <div style={{ transform: `scale(${interpolate(logo, [0, 1], [0.6, 1])})`, opacity: logo, background: "#fff", borderRadius: 56, padding: 40, boxShadow: "0 40px 90px rgba(0,0,0,0.45)" }}>
-          <LogoMark size={190} />
+        <div style={{ transform: `scale(${interpolate(logo, [0, 1], [0.6, 1])})`, opacity: logo, filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.5))" }}>
+          <LogoMark size={270} />
         </div>
-        <div style={{ marginTop: 40, opacity: wm, transform: `translateY(${(1 - wm) * 20}px)` }}>
-          <Wordmark size={86} color="#fff" />
-        </div>
-        <div style={{ marginTop: 20, opacity: tag, transform: `translateY(${(1 - tag) * 16}px)`, color: "rgba(255,255,255,0.85)", fontSize: 40, fontWeight: 600 }}>
+        <div style={{ marginTop: 40, opacity: tag, transform: `translateY(${(1 - tag) * 16}px)`, color: "rgba(255,255,255,0.88)", fontSize: 42, fontWeight: 600 }}>
           La sérénité, à chaque trajet.
         </div>
         <div

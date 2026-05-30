@@ -1,42 +1,72 @@
 import React from "react";
 import { COLORS, FONT } from "./theme";
 
-// The M'EyeBus mark: an eye whose iris is a little bus.
-export const LogoMark: React.FC<{ size?: number }> = ({ size = 200 }) => {
+// Faithful vector reproduction of the real M'EyeBus badge:
+// a crest with a thick navy outer border + thin orange inner liseré,
+// the "M'EyeBus" wordmark (the apostrophe is an orange location pin),
+// and an orange school bus driving up a navy "M"-shaped road with
+// orange dashed lane markings.
+
+const SHIELD =
+  "M64 30 Q150 15 236 30 Q257 35 257 64 L257 152 Q257 256 150 324 Q43 256 43 152 L43 64 Q43 35 64 30 Z";
+const ROAD =
+  "M112 280 C 114 240 118 206 134 184 C 144 202 148 232 150 246 C 152 232 156 202 166 184 C 182 206 186 240 188 280";
+
+const CX = 150;
+const CY = 178;
+const scaleAbout = (s: number) =>
+  `translate(${CX * (1 - s)} ${CY * (1 - s)}) scale(${s})`;
+
+// Orange location pin used as the apostrophe of M'EyeBus.
+const Pin: React.FC<{ w: number }> = ({ w }) => (
+  <svg width={w} height={(w * 32) / 24} viewBox="0 0 24 32" fill="none" style={{ display: "block" }}>
+    <path d="M12 0.5 C5.4 0.5 0.5 5.4 0.5 12 C0.5 20 12 31.5 12 31.5 C12 31.5 23.5 20 23.5 12 C23.5 5.4 18.6 0.5 12 0.5 Z" fill={COLORS.orange} />
+    <circle cx="12" cy="12" r="4.6" fill="#FFFFFF" />
+  </svg>
+);
+
+export const LogoMark: React.FC<{ size?: number; showText?: boolean }> = ({
+  size = 200,
+  showText = true,
+}) => {
+  const h = (size * 340) / 300;
   return (
-    <svg width={size} height={size} viewBox="0 0 200 200" fill="none">
-      {/* orange brow accent */}
-      <path
-        d="M26 74 C 66 44, 134 44, 174 74"
-        stroke={COLORS.orange}
-        strokeWidth={13}
-        strokeLinecap="round"
-        fill="none"
-      />
-      {/* eye almond */}
-      <path
-        d="M16 102 C 52 50, 148 50, 184 102 C 148 154, 52 154, 16 102 Z"
-        fill={COLORS.white}
-        stroke={COLORS.navy}
-        strokeWidth={12}
-        strokeLinejoin="round"
-      />
-      {/* iris */}
-      <circle cx="100" cy="102" r="44" fill={COLORS.blue} />
-      <circle
-        cx="100"
-        cy="102"
-        r="44"
-        fill="none"
-        stroke={COLORS.navy}
-        strokeWidth={5}
-      />
-      {/* bus inside iris */}
-      <rect x="76" y="88" width="48" height="30" rx="8" fill={COLORS.white} />
-      <rect x="81" y="93" width="13" height="11" rx="2.5" fill={COLORS.blue} />
-      <rect x="106" y="93" width="13" height="11" rx="2.5" fill={COLORS.blue} />
-      <circle cx="86" cy="120" r="5.5" fill={COLORS.navy} />
-      <circle cx="114" cy="120" r="5.5" fill={COLORS.navy} />
+    <svg width={size} height={h} viewBox="0 0 300 340" fill="none">
+      {/* shield: navy outer border -> white gap -> orange liseré -> white field */}
+      <path d={SHIELD} fill={COLORS.navy} />
+      <path d={SHIELD} fill={COLORS.white} transform={scaleAbout(0.92)} />
+      <path d={SHIELD} fill={COLORS.orange} transform={scaleAbout(0.895)} />
+      <path d={SHIELD} fill={COLORS.white} transform={scaleAbout(0.875)} />
+
+      {/* wordmark with pin apostrophe */}
+      {showText ? (
+        <>
+          <text x="76" y="84" textAnchor="start" fontFamily={FONT} fontWeight={800} fontSize="30" letterSpacing="-1.5" fill={COLORS.navy}>
+            M
+          </text>
+          <g transform="translate(104 56)">
+            <Pin w={14} />
+          </g>
+          <text x="121" y="84" textAnchor="start" fontFamily={FONT} fontWeight={800} fontSize="30" letterSpacing="-1.5" fill={COLORS.navy}>
+            EyeBus
+          </text>
+        </>
+      ) : null}
+
+      {/* navy "M" road with orange dashes */}
+      <path d={ROAD} fill="none" stroke={COLORS.navy} strokeWidth="24" strokeLinecap="round" strokeLinejoin="round" />
+      <path d={ROAD} fill="none" stroke={COLORS.orange} strokeWidth="5" strokeLinecap="round" strokeDasharray="5 14" />
+
+      {/* orange school bus driving up the right ramp */}
+      <g transform="translate(176 166) rotate(-20)">
+        <rect x="-30" y="-17" width="60" height="33" rx="8" fill={COLORS.orange} stroke={COLORS.navy} strokeWidth="3.5" />
+        <rect x="-23" y="-10" width="38" height="12" rx="3" fill="#FFFFFF" />
+        <line x1="-10" y1="-10" x2="-10" y2="2" stroke={COLORS.navy} strokeWidth="2.5" />
+        <line x1="3" y1="-10" x2="3" y2="2" stroke={COLORS.navy} strokeWidth="2.5" />
+        <rect x="19" y="-6" width="7" height="8" rx="2" fill="#FFFFFF" />
+        <circle cx="-15" cy="16" r="6" fill={COLORS.navy} />
+        <circle cx="15" cy="16" r="6" fill={COLORS.navy} />
+      </g>
     </svg>
   );
 };
@@ -51,14 +81,16 @@ export const Wordmark: React.FC<{ size?: number; color?: string }> = ({
       fontWeight: 800,
       fontSize: size,
       color,
-      letterSpacing: -1,
+      letterSpacing: -2,
       display: "flex",
-      alignItems: "baseline",
+      alignItems: "flex-start",
       lineHeight: 1,
     }}
   >
-    <span>M’</span>
-    <span style={{ color: COLORS.blue }}>Eye</span>
-    <span>Bus</span>
+    <span>M</span>
+    <span style={{ margin: `${size * 0.02}px ${size * 0.01}px 0`, alignSelf: "flex-start" }}>
+      <Pin w={size * 0.34} />
+    </span>
+    <span>EyeBus</span>
   </div>
 );

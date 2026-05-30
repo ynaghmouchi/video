@@ -65,9 +65,7 @@ export const BrandChip: React.FC = () => {
           backdropFilter: "blur(8px)",
         }}
       >
-        <div style={{ background: "#fff", borderRadius: 100, width: 56, height: 56, display: "flex", alignItems: "center", justifyContent: "center" }}>
-          <LogoMark size={42} />
-        </div>
+        <LogoMark size={52} showText={false} />
         <Wordmark size={34} color="#fff" />
       </div>
     </div>

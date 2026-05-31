@@ -9,16 +9,16 @@ import { EleveScreen, ChauffeurScreen, AdminScreen } from "./story-screens";
 import { COLORS } from "./theme";
 
 const D = {
-  problem: 110,
-  anxiety: 130,
-  reveal: 120,
-  parents: 150,
-  eleve: 150,
-  chauffeur: 150,
-  admin: 165,
-  outro: 130,
+  problem: 150,
+  anxiety: 175,
+  reveal: 165,
+  parents: 200,
+  eleve: 200,
+  chauffeur: 205,
+  admin: 220,
+  outro: 165,
 };
-const T = 18;
+const T = 22;
 const N = 7;
 export const STORY_FRAMES = Object.values(D).reduce((a, b) => a + b, 0) - N * T;
 const timing = linearTiming({ durationInFrames: T });

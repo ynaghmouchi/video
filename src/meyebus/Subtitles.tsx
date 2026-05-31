@@ -4,7 +4,7 @@ import { COLORS, FONT } from "./theme";
 import { Icon } from "./ui";
 
 // TikTok-style subtitle: words pop in one by one, the leading word flashes orange.
-export const Subtitle: React.FC<{ text: string; wps?: number }> = ({ text, wps = 4.6 }) => {
+export const Subtitle: React.FC<{ text: string; wps?: number }> = ({ text, wps = 5.6 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
   const words = text.split(" ");

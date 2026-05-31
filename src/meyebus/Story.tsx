@@ -3,9 +3,10 @@ import { AbsoluteFill } from "remotion";
 import { TransitionSeries, linearTiming } from "@remotion/transitions";
 import { fade } from "@remotion/transitions/fade";
 import { slide } from "@remotion/transitions/slide";
-import { ProblemScene, AnxietyScene, RevealScene, StoryPhoneScene, OutroStory } from "./story-scenes";
+import { ProblemScene, AnxietyScene, RevealScene, StoryPhoneScene, StoryWebScene, OutroStory } from "./story-scenes";
 import { TrackingScreen } from "./screens/TrackingScreen";
-import { EleveScreen, ChauffeurScreen, AdminScreen } from "./story-screens";
+import { EleveScreen, ChauffeurScreen } from "./story-screens";
+import { AdminDashboardWeb } from "./web-dashboard";
 import { COLORS } from "./theme";
 
 const D = {
@@ -58,7 +59,7 @@ export const MEyeBusStory: React.FC = () => {
         <TransitionSeries.Transition timing={timing} presentation={slide({ direction: "from-right" })} />
 
         <TransitionSeries.Sequence durationInFrames={D.admin}>
-          <StoryPhoneScene persona="Pour l’école" icon="home" tint={COLORS.navy} subtitle="Toute la flotte, centralisée et supervisée en direct." screen={<AdminScreen />} />
+          <StoryWebScene persona="Pour l’école" icon="home" tint={COLORS.navy} subtitle="Toute la flotte, centralisée et supervisée en direct." content={<AdminDashboardWeb />} />
         </TransitionSeries.Sequence>
         <TransitionSeries.Transition timing={timing} presentation={fade()} />
 

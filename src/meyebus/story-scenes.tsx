@@ -7,6 +7,7 @@ import { Phone3D } from "./Phone3D";
 import { RealLogo } from "./assets";
 import { Wordmark } from "./Logo";
 import { Subtitle, PersonaTag } from "./Subtitles";
+import { BrowserFrame } from "./web-dashboard";
 import { Icon } from "./ui";
 
 const ColdBackground: React.FC = () => {
@@ -136,6 +137,33 @@ export const StoryPhoneScene: React.FC<{
       <div style={{ position: "absolute", left: "50%", top: 300, transform: `translateX(-50%) translateY(${(1 - enter) * 150 + floatY}px) scale(${0.92 + enter * 0.08})`, opacity: enter }}>
         <div style={{ position: "absolute", inset: "auto 40px -40px 40px", height: 120, background: tint, filter: "blur(70px)", opacity: 0.4, borderRadius: "50%" }} />
         <PhoneFrame screenBg={screenBg} notch={notch}>{screen}</PhoneFrame>
+      </div>
+      <Subtitle text={subtitle} />
+    </AbsoluteFill>
+  );
+};
+
+// ----------------------------------------------------------------- Web dashboard scene
+export const StoryWebScene: React.FC<{
+  content: React.ReactNode;
+  persona: string;
+  icon: Parameters<typeof Icon>[0]["name"];
+  tint: string;
+  subtitle: string;
+}> = ({ content, persona, icon, tint, subtitle }) => {
+  const frame = useCurrentFrame();
+  const { fps } = useVideoConfig();
+  const enter = spring({ frame, fps, config: { damping: 18, mass: 0.9 } });
+  const floatY = Math.sin(frame / 26) * 7;
+  const W = 1010;
+  const H = 700;
+  return (
+    <AbsoluteFill>
+      <CinematicBackground />
+      <PersonaTag label={persona} icon={icon} tint={tint} />
+      <div style={{ position: "absolute", left: "50%", top: 420, transform: `translateX(-50%) translateY(${(1 - enter) * 120 + floatY}px) scale(${0.94 + enter * 0.06})`, opacity: enter }}>
+        <div style={{ position: "absolute", inset: "auto 60px -50px 60px", height: 130, background: tint, filter: "blur(80px)", opacity: 0.4, borderRadius: "50%" }} />
+        <BrowserFrame width={W} height={H}>{content}</BrowserFrame>
       </div>
       <Subtitle text={subtitle} />
     </AbsoluteFill>

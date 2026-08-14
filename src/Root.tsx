@@ -3,11 +3,14 @@ import { Composition } from "remotion";
 import { MEyeBusDemo, TOTAL_FRAMES } from "./meyebus/Demo";
 import { MEyeBusStory, STORY_FRAMES } from "./meyebus/Story";
 import { CharacterPreview } from "./meyebus/characters/Preview";
-import { StickerRound, StickerBanner } from "./meyebus/stickers/Sticker";
+import { StickerRound, StickerBanner, MacaronCertifie, BannerNotoriete, CoBrand } from "./meyebus/stickers/Sticker";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition id="MacaronCertifie" component={MacaronCertifie} durationInFrames={1} fps={30} width={900} height={900} />
+      <Composition id="BannerNotoriete" component={BannerNotoriete} durationInFrames={1} fps={30} width={1600} height={520} />
+      <Composition id="CoBrand" component={CoBrand} durationInFrames={1} fps={30} width={1600} height={640} />
       <Composition
         id="StickerRound"
         component={StickerRound}

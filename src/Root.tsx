@@ -3,10 +3,27 @@ import { Composition } from "remotion";
 import { MEyeBusDemo, TOTAL_FRAMES } from "./meyebus/Demo";
 import { MEyeBusStory, STORY_FRAMES } from "./meyebus/Story";
 import { CharacterPreview } from "./meyebus/characters/Preview";
+import { StickerRound, StickerBanner } from "./meyebus/stickers/Sticker";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="StickerRound"
+        component={StickerRound}
+        durationInFrames={1}
+        fps={30}
+        width={1080}
+        height={1080}
+      />
+      <Composition
+        id="StickerBanner"
+        component={StickerBanner}
+        durationInFrames={1}
+        fps={30}
+        width={1600}
+        height={520}
+      />
       <Composition
         id="CharacterPreview"
         component={CharacterPreview}

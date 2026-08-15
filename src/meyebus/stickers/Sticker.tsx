@@ -2,6 +2,7 @@ import React from "react";
 import { AbsoluteFill, random } from "remotion";
 import { COLORS, FONT } from "../theme";
 import { LogoMark, Wordmark } from "../Logo";
+import { RealLogo } from "../assets";
 import { Icon } from "../ui";
 import { QR_SIZE, QR_MODULES } from "./qr-data";
 
@@ -79,9 +80,9 @@ const QRBranded: React.FC<{ size: number; label?: string }> = ({ size, label = "
             }),
           )}
         </svg>
-        {/* center logo knockout */}
+        {/* center logo knockout — real M'EyeBus badge (public/logo.png) */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: logoBox, height: logoBox, background: "#fff", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 0 3px #fff" }}>
-          <LogoMark size={logoBox * 0.82} showText={false} />
+          <RealLogo width={logoBox * 0.82} />
         </div>
       </div>
       {label ? <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: size * 0.1, color: COLORS.navy, letterSpacing: 0.5 }}>{label}</span> : null}

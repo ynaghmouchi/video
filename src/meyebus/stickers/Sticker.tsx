@@ -231,8 +231,8 @@ export const MacaronApp: React.FC = () => (
         <div style={{ marginTop: 14, color: COLORS.textMuted, fontWeight: 700, fontSize: 27, textAlign: "center", maxWidth: 700 }}>
           Le trajet de votre enfant, en direct.
         </div>
-        <div style={{ marginTop: 26 }}>
-          <QRBranded size={188} label="Scannez pour suivre le bus" />
+        <div style={{ marginTop: 30 }}>
+          <QRBranded size={252} label="" />
         </div>
       </AbsoluteFill>
     </div>

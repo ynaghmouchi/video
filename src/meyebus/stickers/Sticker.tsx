@@ -3,8 +3,6 @@ import { AbsoluteFill, random } from "remotion";
 import { COLORS, FONT } from "../theme";
 import { LogoMark, Wordmark } from "../Logo";
 import { Icon } from "../ui";
-import { PhoneFrame, PHONE_W, PHONE_H } from "../PhoneFrame";
-import { TrackingScreen } from "../screens/TrackingScreen";
 
 // ---------------------------------------------------------------------------
 // Print-ready marketing stickers for partner buses. Pure vector → scale to any
@@ -183,46 +181,27 @@ export const MacaronCertifie: React.FC = () => (
   </AbsoluteFill>
 );
 
-// ---- Mini phone showing the live tracking screen (the app, front and center)
-const MiniPhone: React.FC<{ scale: number }> = ({ scale }) => {
-  const w = PHONE_W * scale;
-  const h = PHONE_H * scale;
-  return (
-    <div style={{ position: "relative", width: w, height: h }}>
-      {/* brand glow behind the device */}
-      <div style={{ position: "absolute", inset: "8% -18% -6% -18%", background: `radial-gradient(closest-side, ${COLORS.blue}33, transparent)`, filter: "blur(24px)" }} />
-      <div style={{ position: "absolute", top: 0, left: 0, transform: `scale(${scale})`, transformOrigin: "top left" }}>
-        <PhoneFrame screenBg={COLORS.mapBg}>
-          <TrackingScreen />
-        </PhoneFrame>
-      </div>
-      {/* live alert chip */}
-      <div style={{ position: "absolute", top: -18, right: -70, display: "flex", alignItems: "center", gap: 8, background: "#fff", color: COLORS.navy, fontFamily: FONT, fontWeight: 800, fontSize: 22, padding: "10px 16px", borderRadius: 100, boxShadow: "0 10px 26px rgba(0,0,0,0.18)" }}>
-        <span style={{ width: 12, height: 12, borderRadius: "50%", background: COLORS.red }} />
-        Bus à 3 min
-      </div>
-    </div>
-  );
-};
-
-// A — MACARON, version « app en avant » : le sceau + l'écran de suivi en héros.
+// A — MACARON, version « accroche + QR » : phrase parents forte + QR à scanner.
 export const MacaronApp: React.FC = () => (
   <AbsoluteFill style={{ background: "transparent", alignItems: "center", justifyContent: "center" }}>
     <div style={{ position: "relative", width: 900, height: 900, filter: "drop-shadow(0 24px 60px rgba(0,0,0,0.25))" }}>
       <SealRing />
       <AbsoluteFill style={{ alignItems: "center", justifyContent: "center", fontFamily: FONT, padding: 96 }}>
-        <div style={{ color: COLORS.navy, fontWeight: 800, fontSize: 25, letterSpacing: 4, opacity: 0.8, display: "flex", alignItems: "center", gap: 12 }}>
-          <ShieldCheck size={26} /> TRANSPORT SCOLAIRE CERTIFIÉ
+        <div style={{ color: COLORS.navy, fontWeight: 800, fontSize: 24, letterSpacing: 5, opacity: 0.75 }}>
+          ★ TRANSPORT SCOLAIRE ★
         </div>
-        <div style={{ margin: "22px 0 18px" }}>
-          <MiniPhone scale={0.30} />
+        <div style={{ marginTop: 14, display: "flex", alignItems: "center", gap: 16 }}>
+          <Wordmark size={58} color={COLORS.navy} />
+          <CertPill scale={0.72} />
         </div>
-        <Wordmark size={50} color={COLORS.navy} />
-        <div style={{ marginTop: 10, color: COLORS.navy, fontWeight: 900, fontSize: 38, textAlign: "center", letterSpacing: -0.5 }}>
-          Suivez le bus en direct
+        <div style={{ marginTop: 22, color: COLORS.navy, fontWeight: 900, fontSize: 60, textAlign: "center", lineHeight: 1.0, letterSpacing: -1 }}>
+          Où est le bus ?<br /><span style={{ color: COLORS.orange }}>Vous le savez.</span>
         </div>
-        <div style={{ marginTop: 8, display: "flex", alignItems: "center", gap: 10, color: COLORS.textMuted, fontWeight: 700, fontSize: 25 }}>
-          <Icon name="navigation" size={24} color={COLORS.orange} /> Gratuit sur iOS &amp; Android
+        <div style={{ marginTop: 14, color: COLORS.textMuted, fontWeight: 700, fontSize: 27, textAlign: "center", maxWidth: 700 }}>
+          Le trajet de votre enfant, en direct.
+        </div>
+        <div style={{ marginTop: 26 }}>
+          <QRPlaceholder size={182} label="Scannez pour suivre le bus" />
         </div>
       </AbsoluteFill>
     </div>

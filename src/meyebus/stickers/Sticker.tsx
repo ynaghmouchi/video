@@ -3,6 +3,7 @@ import { AbsoluteFill, random } from "remotion";
 import { COLORS, FONT } from "../theme";
 import { LogoMark, Wordmark } from "../Logo";
 import { Icon } from "../ui";
+import { QR_SIZE, QR_MODULES } from "./qr-data";
 
 // ---------------------------------------------------------------------------
 // Print-ready marketing stickers for partner buses. Pure vector → scale to any
@@ -58,6 +59,35 @@ const CertPill: React.FC<{ scale?: number }> = ({ scale = 1 }) => (
     CERTIFIÉ
   </div>
 );
+
+// Real, scannable QR rendered as vector from the generated matrix, with the
+// M'EyeBus badge in the center (error-correction H tolerates the overlay).
+const QRBranded: React.FC<{ size: number; label?: string }> = ({ size, label = "Scannez-moi" }) => {
+  const quiet = 2; // quiet-zone in modules
+  const n = QR_SIZE + quiet * 2;
+  const cell = size / n;
+  const logoBox = Math.round(QR_SIZE * 0.26) * cell; // white knockout for the logo
+  return (
+    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 12 }}>
+      <div style={{ position: "relative", background: "#fff", padding: cell * 1.4, borderRadius: 22, boxShadow: "0 10px 28px rgba(0,0,0,0.12)" }}>
+        <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`} shapeRendering="crispEdges">
+          <rect width={size} height={size} fill="#fff" />
+          {Array.from({ length: QR_SIZE }).map((_, y) =>
+            Array.from({ length: QR_SIZE }).map((_, x) => {
+              if (!QR_MODULES[y * QR_SIZE + x]) return null;
+              return <rect key={`${x}-${y}`} x={(x + quiet) * cell} y={(y + quiet) * cell} width={cell + 0.5} height={cell + 0.5} fill={COLORS.navy} />;
+            }),
+          )}
+        </svg>
+        {/* center logo knockout */}
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)", width: logoBox, height: logoBox, background: "#fff", borderRadius: 12, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 0 0 3px #fff" }}>
+          <LogoMark size={logoBox * 0.82} showText={false} />
+        </div>
+      </div>
+      {label ? <span style={{ fontFamily: FONT, fontWeight: 800, fontSize: size * 0.1, color: COLORS.navy, letterSpacing: 0.5 }}>{label}</span> : null}
+    </div>
+  );
+};
 
 const LiveBadge: React.FC<{ scale?: number }> = ({ scale = 1 }) => (
   <div style={{ display: "inline-flex", alignItems: "center", gap: 12 * scale, background: COLORS.red, color: "#fff", fontFamily: FONT, fontWeight: 800, fontSize: 30 * scale, padding: `${12 * scale}px ${26 * scale}px`, borderRadius: 100, letterSpacing: 2 }}>
@@ -201,7 +231,7 @@ export const MacaronApp: React.FC = () => (
           Le trajet de votre enfant, en direct.
         </div>
         <div style={{ marginTop: 26 }}>
-          <QRPlaceholder size={182} label="Scannez pour suivre le bus" />
+          <QRBranded size={188} label="Scannez pour suivre le bus" />
         </div>
       </AbsoluteFill>
     </div>

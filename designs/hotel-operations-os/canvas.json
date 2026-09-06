@@ -3,7 +3,9 @@
     { "file": "Main.dc.html", "title": "Gouvernante — Housekeeping", "x": 0, "y": 0, "w": 1440, "h": 1600 },
     { "file": "MobileTasks.dc.html", "title": "Femme de chambre — Mes tâches", "x": 1560, "y": 0, "w": 390, "h": 844 },
     { "file": "MobileChecklist.dc.html", "title": "Femme de chambre — Checklist", "x": 2030, "y": 0, "w": 390, "h": 1300 },
-    { "file": "Directeur.dc.html", "title": "Directeur — Performance opérationnelle", "x": 0, "y": 1750, "w": 1440, "h": 1800 }
+    { "file": "MobileRestock.dc.html", "title": "Femme de chambre — Réassort produits", "x": 2500, "y": 0, "w": 390, "h": 900 },
+    { "file": "Directeur.dc.html", "title": "Directeur — Performance opérationnelle", "x": 0, "y": 1750, "w": 1440, "h": 1800 },
+    { "file": "Inspection.dc.html", "title": "Gouvernante — Inspection & besoins produits", "x": 1560, "y": 1750, "w": 1440, "h": 960 }
   ],
   "launch": { "view": "canvas" }
 }

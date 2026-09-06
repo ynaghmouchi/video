@@ -1,0 +1,143 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:oklch(0.98 0.006 75);
+    --surface:oklch(1 0 0);
+    --surface-alt:oklch(0.965 0.007 75);
+    --border:oklch(0.905 0.008 70);
+    --ink:oklch(0.24 0.015 50);
+    --ink-soft:oklch(0.47 0.016 50);
+    --ink-faint:oklch(0.63 0.012 60);
+    --accent:oklch(0.47 0.11 35);
+    --accent-strong:oklch(0.38 0.105 35);
+    --accent-soft:oklch(0.93 0.028 40);
+    --accent-ink:oklch(0.36 0.10 35);
+    --green:oklch(0.56 0.13 145);
+    --green-soft:oklch(0.94 0.045 145);
+    --green-ink:oklch(0.40 0.11 145);
+    --orange:oklch(0.70 0.16 60);
+    --orange-soft:oklch(0.95 0.055 60);
+    --orange-ink:oklch(0.46 0.13 55);
+    --red-ink:oklch(0.46 0.17 25);
+    --font-display:'Newsreader', 'Iowan Old Style', Georgia, serif;
+    --font-sans:'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    --shadow-sm:0 1px 2px rgba(30,20,10,0.05), 0 1px 10px rgba(30,20,10,0.03);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .phone{width:390px;height:900px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
+  .content{flex:1;padding:24px 20px 12px;display:flex;flex-direction:column;gap:20px;}
+
+  .head-row{display:flex;align-items:center;gap:14px;}
+  .back-btn{width:36px;height:36px;border-radius:10px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .back-btn svg{width:18px;height:18px;color:var(--ink-soft);}
+  .head-titles h1{font-family:var(--font-display);font-size:19px;font-weight:600;margin:0;color:var(--ink);}
+  .head-titles p{margin:2px 0 0;font-size:12.5px;color:var(--ink-faint);}
+
+  .meta-row{display:flex;align-items:center;gap:8px;margin-top:-6px;}
+  .tag{font-size:11px;font-weight:700;padding:4px 9px;border-radius:7px;color:var(--accent-ink);background:var(--accent-soft);}
+  .meta-time{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-soft);}
+  .meta-time svg{width:14px;height:14px;color:var(--ink-faint);}
+
+  .requested{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--ink-soft);background:var(--surface-alt);border-radius:12px;padding:12px 14px;}
+  .requested .avatar{width:26px;height:26px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .requested b{color:var(--ink);}
+
+  .group-label{font-size:11.5px;font-weight:700;color:var(--ink-faint);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+  .product-list{background:var(--surface);border:1px solid var(--border);border-radius:16px;box-shadow:var(--shadow-sm);overflow:hidden;}
+  .product-row{display:flex;align-items:center;gap:13px;padding:14px 16px;border-top:1px solid var(--border);}
+  .product-row:first-child{border-top:none;}
+  .product-icon{width:36px;height:36px;border-radius:11px;background:var(--surface-alt);color:var(--ink-soft);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .product-icon svg{width:18px;height:18px;}
+  .product-name{flex:1;font-size:14.5px;font-weight:600;color:var(--ink);}
+  .qty-badge{font-size:13px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:5px 11px;border-radius:999px;}
+  .box{width:22px;height:22px;border-radius:7px;border:1.8px solid var(--border);flex-shrink:0;}
+
+  .note-card{background:var(--surface);border:1px dashed var(--border);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:6px;}
+  .note-title{font-size:13px;font-weight:700;color:var(--ink);}
+  .note-body{font-size:13px;color:var(--ink-soft);line-height:1.5;}
+
+  .footer{flex-shrink:0;border-top:1px solid var(--border);background:var(--surface);padding:14px 20px 22px;}
+  .btn-primary{background:var(--accent);color:#fff;font-size:16px;font-weight:700;padding:15px;border-radius:13px;text-align:center;}
+</style>
+</helmet>
+
+<div class="phone">
+  <div class="content">
+
+    <div class="head-row">
+      <div class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </div>
+      <div class="head-titles">
+        <h1>Chambre 301 — Réassort</h1>
+        <p>Suite</p>
+      </div>
+    </div>
+
+    <div class="meta-row">
+      <span class="tag">VIP</span>
+      <span class="meta-time">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        Avant l'arrivée de 14:00
+      </span>
+    </div>
+
+    <div class="requested">
+      <div class="avatar">N</div>
+      Demandé par <b>Nadia</b> après inspection
+    </div>
+
+    <div>
+      <div class="group-label">Produits à apporter</div>
+      <div class="product-list">
+        <div class="product-row">
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2 2.5-4 5-4 8a4 4 0 0 0 8 0c0-3-2-5.5-4-8z"/></svg></div>
+          <span class="product-name">Shampoing</span>
+          <span class="qty-badge">× 2</span>
+          <div class="box"></div>
+        </div>
+        <div class="product-row">
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2 2.5-4 5-4 8a4 4 0 0 0 8 0c0-3-2-5.5-4-8z"/></svg></div>
+          <span class="product-name">Gel douche</span>
+          <span class="qty-badge">× 2</span>
+          <div class="box"></div>
+        </div>
+        <div class="product-row">
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="6" width="16" height="12" rx="2"/><path d="M4 10h16"/></svg></div>
+          <span class="product-name">Serviettes de bain</span>
+          <span class="qty-badge">× 3</span>
+          <div class="box"></div>
+        </div>
+        <div class="product-row">
+          <div class="product-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <span class="product-name">Papier toilette</span>
+          <span class="qty-badge">× 1</span>
+          <div class="box"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-card">
+      <span class="note-title">Note de Nadia</span>
+      <span class="note-body">Prévoir le kit de bienvenue VIP en plus du réassort standard.</span>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="btn-primary">Confirmer le réassort</div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

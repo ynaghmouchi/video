@@ -68,6 +68,12 @@
   .btn-primary{background:var(--accent);color:#fff;font-size:15px;font-weight:700;padding:13px;border-radius:12px;text-align:center;}
   .badge{font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;white-space:nowrap;color:var(--orange-ink);background:var(--orange-soft);align-self:flex-start;}
 
+  .restock-row{display:flex;align-items:center;gap:14px;}
+  .restock-icon{width:40px;height:40px;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .restock-icon svg{width:20px;height:20px;}
+  .restock-body{flex:1;min-width:0;}
+  .restock-chevron{width:18px;height:18px;color:var(--ink-faint);flex-shrink:0;}
+
   .navbar{flex-shrink:0;display:flex;border-top:1px solid var(--border);background:var(--surface);padding:10px 8px 16px;}
   .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink-faint);}
   .nav-item svg{width:22px;height:22px;}
@@ -132,6 +138,19 @@
         <span class="tag vip">VIP</span>
       </div>
       <span class="badge">À faire</span>
+    </div>
+
+    <div class="task-card compact">
+      <div class="restock-row">
+        <div class="restock-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+        </div>
+        <div class="restock-body">
+          <div class="task-room" style="font-size:16px">Chambre 301 — Réassort</div>
+          <div class="task-type">Demandé par Nadia · 4 produits · 8 unités</div>
+        </div>
+        <svg class="restock-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+      </div>
     </div>
 
   </div>

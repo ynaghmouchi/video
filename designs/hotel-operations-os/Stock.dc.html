@@ -1,0 +1,240 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:oklch(0.98 0.006 75);
+    --surface:oklch(1 0 0);
+    --surface-alt:oklch(0.965 0.007 75);
+    --border:oklch(0.905 0.008 70);
+    --ink:oklch(0.24 0.015 50);
+    --ink-soft:oklch(0.47 0.016 50);
+    --ink-faint:oklch(0.63 0.012 60);
+    --accent:oklch(0.47 0.11 35);
+    --accent-strong:oklch(0.38 0.105 35);
+    --accent-soft:oklch(0.93 0.028 40);
+    --accent-ink:oklch(0.36 0.10 35);
+    --green:oklch(0.56 0.13 145);
+    --green-soft:oklch(0.94 0.045 145);
+    --green-ink:oklch(0.40 0.11 145);
+    --orange:oklch(0.70 0.16 60);
+    --orange-soft:oklch(0.95 0.055 60);
+    --orange-ink:oklch(0.46 0.13 55);
+    --red:oklch(0.55 0.19 25);
+    --red-soft:oklch(0.94 0.055 25);
+    --red-ink:oklch(0.46 0.17 25);
+    --grey:oklch(0.58 0.01 260);
+    --grey-soft:oklch(0.93 0.007 260);
+    --grey-ink:oklch(0.45 0.012 260);
+    --font-display:'Newsreader', 'Iowan Old Style', Georgia, serif;
+    --font-sans:'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    --shadow-sm:0 1px 2px rgba(30,20,10,0.05), 0 1px 10px rgba(30,20,10,0.03);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  a{color:var(--accent);text-decoration:none;}
+  .app{width:1180px;min-height:1080px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;}
+
+  .topnav{height:68px;flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:0 20px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{width:34px;height:34px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .brand-mark svg{width:18px;height:18px;}
+  .brand-word{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);white-space:nowrap;}
+  .nav-divider{width:1px;height:28px;background:var(--border);}
+  .hotel-switch .label{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.06em;display:block;}
+  .hotel-switch .value{font-size:14px;font-weight:600;color:var(--ink);}
+  .topnav-spacer{flex:1;}
+  .lang-toggle{display:flex;align-items:center;background:var(--surface-alt);border:1px solid var(--border);border-radius:999px;padding:3px;gap:2px;}
+  .lang-toggle .opt{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;color:var(--ink-faint);}
+  .lang-toggle .opt.active{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm);}
+  .lang-toggle .opt.soon{display:flex;align-items:center;gap:5px;}
+  .lang-toggle .soon-badge{font-size:9px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:1px 5px;border-radius:6px;}
+  .icon-btn{position:relative;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);}
+  .icon-btn svg{width:20px;height:20px;}
+  .icon-btn .dot{position:absolute;top:6px;right:7px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid var(--surface);}
+  .profile-chip{display:flex;align-items:center;gap:10px;padding:4px 10px 4px 4px;border-radius:12px;}
+  .avatar{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+  .profile-chip .who{display:flex;flex-direction:column;line-height:1.25;}
+  .profile-chip .who .name{font-size:13.5px;font-weight:700;color:var(--ink);}
+  .profile-chip .who .role{font-size:11.5px;color:var(--ink-faint);}
+
+  .shell{display:flex;flex:1;}
+  .sidebar{width:188px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:18px 10px;display:flex;flex-direction:column;gap:2px;}
+  .side-item{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--ink-soft);}
+  .side-item svg{width:18px;height:18px;flex-shrink:0;}
+  .side-item.active{background:var(--accent-soft);color:var(--accent-ink);}
+  .side-item.active svg{color:var(--accent-ink);}
+
+  .main{flex:1;padding:24px 26px 48px;display:flex;flex-direction:column;gap:18px;}
+  .page-head{display:flex;align-items:baseline;justify-content:space-between;}
+  .page-title{font-family:var(--font-display);font-size:25px;font-weight:600;color:var(--ink);margin:0;}
+  .page-sub{font-size:14px;color:var(--ink-faint);margin:4px 0 0;}
+  .btn-secondary{background:var(--surface);border:1px solid var(--border);color:var(--ink);font-size:13.5px;font-weight:700;padding:10px 16px;border-radius:11px;display:inline-flex;align-items:center;gap:8px;}
+  .btn-secondary svg{width:15px;height:15px;}
+
+  .stat-row{display:flex;gap:12px;}
+  .stat-chip{flex:1;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:13px 16px;box-shadow:var(--shadow-sm);display:flex;align-items:baseline;gap:8px;}
+  .stat-chip .num{font-family:var(--font-display);font-size:20px;font-weight:600;color:var(--ink);}
+  .stat-chip .num.crit{color:var(--red-ink);}
+  .stat-chip .lbl{font-size:12.5px;color:var(--ink-soft);}
+
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-sm);padding:20px 22px;}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+  .panel-title{font-size:16px;font-weight:700;color:var(--ink);margin:0;}
+
+  .table-head{display:grid;grid-template-columns:1.4fr 140px 140px 130px 130px;gap:12px;padding:0 6px 10px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-faint);border-bottom:1px solid var(--border);}
+  .table-row{display:grid;grid-template-columns:1.4fr 140px 140px 130px 130px;gap:12px;align-items:center;padding:14px 6px;border-top:1px solid var(--border);}
+  .table-row:first-child{border-top:none;}
+  .prod-name{font-size:14.5px;font-weight:600;color:var(--ink);}
+  .prod-note{font-size:11.5px;color:var(--red-ink);margin-top:2px;}
+  .qty{font-size:14px;color:var(--ink);}
+  .badge{font-size:11.5px;font-weight:700;padding:5px 11px;border-radius:999px;white-space:nowrap;display:inline-block;}
+  .badge.red{color:var(--red-ink);background:var(--red-soft);}
+  .badge.orange{color:var(--orange-ink);background:var(--orange-soft);}
+  .badge.green{color:var(--green-ink);background:var(--green-soft);}
+  .btn-order{color:var(--accent-ink);background:var(--accent-soft);font-size:12.5px;font-weight:700;padding:7px 13px;border-radius:9px;display:inline-block;}
+</style>
+</helmet>
+
+<div class="app">
+
+  <div class="topnav">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-7h6v7"/></svg>
+      </div>
+      <span class="brand-word">Hotel Operations OS</span>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="hotel-switch">
+      <span class="label">Hôtel</span>
+      <span class="value">Atlas Marrakech</span>
+    </div>
+    <div class="topnav-spacer"></div>
+    <div class="lang-toggle">
+      <div class="opt active">FR</div>
+      <div class="opt soon">AR <span class="soon-badge">Bientôt · RTL</span></div>
+    </div>
+    <div class="icon-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+      <div class="dot"></div>
+    </div>
+    <div class="profile-chip">
+      <div class="avatar">N</div>
+      <div class="who"><span class="name">Nadia</span><span class="role">Gouvernante</span></div>
+    </div>
+  </div>
+
+  <div class="shell">
+    <div class="sidebar">
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+        Vue générale
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V11a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10"/><path d="M3 11l3-6h12l3 6"/><path d="M3 21h18"/></svg>
+        Chambres
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20l6-11"/><path d="M11 9l3-6 5 3-3 6"/><circle cx="17" cy="17" r="3.4"/></svg>
+        Housekeeping
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4L21 6l-3-3z"/></svg>
+        Maintenance
+      </div>
+      <div class="side-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+        Stock
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
+        Achats
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+        Rapports
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V20a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H4a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1-1.55V4a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10a1.7 1.7 0 0 0 1.55 1H20a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.55 1z"/></svg>
+        Paramètres
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Stock</h1>
+          <p class="page-sub">Économat · dernier inventaire hier</p>
+        </div>
+        <div class="btn-secondary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+          Nouvelle entrée
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-chip"><span class="num crit">1</span><span class="lbl">Critique</span></div>
+        <div class="stat-chip"><span class="num">3</span><span class="lbl">Stock bas</span></div>
+        <div class="stat-chip"><span class="num">2</span><span class="lbl">OK</span></div>
+        <div class="stat-chip"><span class="num">1</span><span class="lbl">Commande en attente</span></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h2 class="panel-title">Produits économat</h2></div>
+
+        <div class="table-head">
+          <span>Produit</span><span>Stock actuel</span><span>Seuil mini</span><span>Statut</span><span>Action</span>
+        </div>
+
+        <div class="table-row">
+          <div><div class="prod-name">Shampoing</div><div class="prod-note">Consommation +27% vs moyenne</div></div>
+          <span class="qty">85 unités</span><span class="qty">120 unités</span>
+          <span class="badge orange">Bas</span>
+          <span class="btn-order">Commander</span>
+        </div>
+        <div class="table-row">
+          <div class="prod-name">Gel douche</div>
+          <span class="qty">140 unités</span><span class="qty">100 unités</span>
+          <span class="badge green">OK</span>
+          <span></span>
+        </div>
+        <div class="table-row">
+          <div class="prod-name">Serviettes de bain</div>
+          <span class="qty">210 unités</span><span class="qty">150 unités</span>
+          <span class="badge green">OK</span>
+          <span></span>
+        </div>
+        <div class="table-row">
+          <div class="prod-name">Produits d'entretien</div>
+          <span class="qty">60 unités</span><span class="qty">80 unités</span>
+          <span class="badge orange">Bas</span>
+          <span class="btn-order">Commander</span>
+        </div>
+        <div class="table-row">
+          <div><div class="prod-name">Papier toilette</div><div class="prod-note">Rupture estimée sous 3 jours</div></div>
+          <span class="qty">18 unités</span><span class="qty">100 unités</span>
+          <span class="badge red">Critique</span>
+          <span class="btn-order">Commander</span>
+        </div>
+        <div class="table-row">
+          <div class="prod-name">Kit de bienvenue (amenities)</div>
+          <span class="qty">45 unités</span><span class="qty">60 unités</span>
+          <span class="badge orange">Bas</span>
+          <span class="btn-order">Commander</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

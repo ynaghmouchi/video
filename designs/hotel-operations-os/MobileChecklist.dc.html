@@ -35,8 +35,9 @@
   }
   *{box-sizing:border-box;}
   body{margin:0;}
-  .phone{width:390px;height:1300px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
-  .content{flex:1;padding:24px 20px 12px;display:flex;flex-direction:column;gap:22px;}
+  .phone{width:768px;height:900px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
+  .content{flex:1;padding:28px 34px 12px;display:flex;flex-direction:column;gap:22px;}
+  .groups-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;}
 
   .head-row{display:flex;align-items:center;gap:14px;}
   .back-btn{width:36px;height:36px;border-radius:10px;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
@@ -95,50 +96,54 @@
       </span>
     </div>
 
-    <div class="group">
-      <div class="group-label">Chambre</div>
-      <div class="check-list">
-        <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Lit</span></div>
-        <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Draps</span></div>
-        <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Oreillers</span></div>
-        <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Sol</span></div>
-        <div class="check-row"><div class="box"></div><span>Poussière</span></div>
-        <div class="check-row"><div class="box"></div><span>Poubelle</span></div>
+    <div class="groups-row">
+      <div class="group">
+        <div class="group-label">Chambre</div>
+        <div class="check-list">
+          <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Lit</span></div>
+          <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Draps</span></div>
+          <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Oreillers</span></div>
+          <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Sol</span></div>
+          <div class="check-row"><div class="box"></div><span>Poussière</span></div>
+          <div class="check-row"><div class="box"></div><span>Poubelle</span></div>
+        </div>
+      </div>
+
+      <div class="group">
+        <div class="group-label">Salle de bain</div>
+        <div class="check-list">
+          <div class="check-row"><div class="box"></div><span>Douche</span></div>
+          <div class="check-row"><div class="box"></div><span>WC</span></div>
+          <div class="check-row"><div class="box"></div><span>Lavabo</span></div>
+          <div class="check-row"><div class="box"></div><span>Miroir</span></div>
+          <div class="check-row"><div class="box"></div><span>Serviettes</span></div>
+          <div class="check-row"><div class="box"></div><span>Amenities</span></div>
+        </div>
       </div>
     </div>
 
-    <div class="group">
-      <div class="group-label">Salle de bain</div>
-      <div class="check-list">
-        <div class="check-row"><div class="box"></div><span>Douche</span></div>
-        <div class="check-row"><div class="box"></div><span>WC</span></div>
-        <div class="check-row"><div class="box"></div><span>Lavabo</span></div>
-        <div class="check-row"><div class="box"></div><span>Miroir</span></div>
-        <div class="check-row"><div class="box"></div><span>Serviettes</span></div>
-        <div class="check-row"><div class="box"></div><span>Amenities</span></div>
+    <div class="groups-row">
+      <div class="group">
+        <div class="group-label">Équipements</div>
+        <div class="check-list">
+          <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>TV</span></div>
+          <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Climatisation</span></div>
+          <div class="check-row"><div class="box"></div><span>Éclairage</span></div>
+          <div class="check-row"><div class="box"></div><span>Coffre</span></div>
+        </div>
       </div>
-    </div>
 
-    <div class="group">
-      <div class="group-label">Équipements</div>
-      <div class="check-list">
-        <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>TV</span></div>
-        <div class="check-row done"><div class="box done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div><span>Climatisation</span></div>
-        <div class="check-row"><div class="box"></div><span>Éclairage</span></div>
-        <div class="check-row"><div class="box"></div><span>Coffre</span></div>
+      <div class="report-card">
+        <div class="report-title">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+          Signaler un problème
+        </div>
+        <div class="photo-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h1.2a1 1 0 0 0 .8-.4l1-1.3a1 1 0 0 1 .8-.3h4.4a1 1 0 0 1 .8.3l1 1.3a1 1 0 0 0 .8.4H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg>
+          Ajouter une photo
+        </div>
+        <div class="comment-box">Décrire le problème (optionnel)</div>
       </div>
-    </div>
-
-    <div class="report-card">
-      <div class="report-title">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
-        Signaler un problème
-      </div>
-      <div class="photo-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8a2 2 0 0 1 2-2h1.2a1 1 0 0 0 .8-.4l1-1.3a1 1 0 0 1 .8-.3h4.4a1 1 0 0 1 .8.3l1 1.3a1 1 0 0 0 .8.4H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.6"/></svg>
-        Ajouter une photo
-      </div>
-      <div class="comment-box">Décrire le problème (optionnel)</div>
     </div>
 
   </div>

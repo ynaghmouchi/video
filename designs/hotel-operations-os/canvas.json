@@ -1,11 +1,32 @@
 {
-  "artboards": [
-    { "file": "Main.dc.html", "title": "Gouvernante — Housekeeping", "x": 0, "y": 0, "w": 1440, "h": 1600 },
-    { "file": "MobileTasks.dc.html", "title": "Femme de chambre — Mes tâches", "x": 1560, "y": 0, "w": 390, "h": 844 },
-    { "file": "MobileChecklist.dc.html", "title": "Femme de chambre — Checklist", "x": 2030, "y": 0, "w": 390, "h": 1300 },
-    { "file": "MobileRestock.dc.html", "title": "Femme de chambre — Réassort produits", "x": 2500, "y": 0, "w": 390, "h": 900 },
-    { "file": "Directeur.dc.html", "title": "Directeur — Performance opérationnelle", "x": 0, "y": 1750, "w": 1440, "h": 1800 },
-    { "file": "Inspection.dc.html", "title": "Gouvernante — Inspection & besoins produits", "x": 1560, "y": 1750, "w": 1440, "h": 960 }
+  "pages": [
+    { "id": "gouvernante", "name": "Gouvernante — Tablette" },
+    { "id": "femme-de-chambre", "name": "Femme de chambre — Mini-tablette" },
+    { "id": "directeur", "name": "Directeur — Desktop" }
   ],
-  "launch": { "view": "canvas" }
+  "artboards": [
+    { "file": "Directeur.dc.html", "title": "Performance opérationnelle", "page": "directeur", "x": 0, "y": 0, "w": 1440, "h": 1800 },
+
+    { "file": "Main.dc.html", "title": "Housekeeping — Aujourd'hui", "page": "gouvernante", "x": 0, "y": 0, "w": 1180, "h": 1560 },
+
+    { "file": "Inspection.dc.html", "title": "Inspection & besoins produits", "page": "gouvernante", "x": 0, "y": 1710, "w": 1180, "h": 900 },
+    { "file": "Rooms.dc.html", "title": "Chambres", "page": "gouvernante", "x": 1280, "y": 1710, "w": 1180, "h": 1180 },
+
+    { "file": "Maintenance.dc.html", "title": "Maintenance", "page": "gouvernante", "x": 0, "y": 3040, "w": 1180, "h": 1120 },
+    { "file": "Stock.dc.html", "title": "Stock", "page": "gouvernante", "x": 1280, "y": 3040, "w": 1180, "h": 1080 },
+
+    { "file": "Purchases.dc.html", "title": "Achats", "page": "gouvernante", "x": 0, "y": 4310, "w": 1180, "h": 1060 },
+    { "file": "Reports.dc.html", "title": "Rapports", "page": "gouvernante", "x": 1280, "y": 4310, "w": 1180, "h": 1120 },
+
+    { "file": "Settings.dc.html", "title": "Paramètres", "page": "gouvernante", "x": 0, "y": 5580, "w": 1180, "h": 1260 },
+
+    { "file": "MobileTasks.dc.html", "title": "Mes tâches", "page": "femme-de-chambre", "x": 0, "y": 0, "w": 768, "h": 820 },
+    { "file": "MobileChecklist.dc.html", "title": "Checklist chambre 205", "page": "femme-de-chambre", "x": 868, "y": 0, "w": 768, "h": 900 },
+    { "file": "MobileRestock.dc.html", "title": "Réassort chambre 301", "page": "femme-de-chambre", "x": 1736, "y": 0, "w": 768, "h": 760 },
+
+    { "file": "MobileRooms.dc.html", "title": "Mes chambres", "page": "femme-de-chambre", "x": 0, "y": 1050, "w": 768, "h": 900 },
+    { "file": "MobileIncidents.dc.html", "title": "Incidents", "page": "femme-de-chambre", "x": 868, "y": 1050, "w": 768, "h": 820 },
+    { "file": "MobileProfile.dc.html", "title": "Profil", "page": "femme-de-chambre", "x": 1736, "y": 1050, "w": 768, "h": 900 }
+  ],
+  "launch": { "view": "canvas", "page": "gouvernante" }
 }

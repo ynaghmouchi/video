@@ -40,10 +40,11 @@
   *{box-sizing:border-box;}
   body{margin:0;}
   a{color:var(--accent);text-decoration:none;}
-  .phone{width:390px;height:844px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
-  .content{flex:1;padding:26px 20px 8px;display:flex;flex-direction:column;gap:22px;min-height:0;}
-  .greeting h1{font-family:var(--font-display);font-size:23px;font-weight:600;margin:0;color:var(--ink);}
-  .greeting p{margin:3px 0 0;font-size:13.5px;color:var(--ink-faint);}
+  .phone{width:768px;height:820px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
+  .content{flex:1;padding:30px 34px 8px;display:flex;flex-direction:column;gap:22px;min-height:0;}
+  .greeting h1{font-family:var(--font-display);font-size:25px;font-weight:600;margin:0;color:var(--ink);}
+  .greeting p{margin:3px 0 0;font-size:14px;color:var(--ink-faint);}
+  .card-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 
   .progress-block{display:flex;flex-direction:column;gap:8px;}
   .progress-top{display:flex;align-items:baseline;justify-content:space-between;}
@@ -119,37 +120,39 @@
       <div class="btn-primary">Commencer</div>
     </div>
 
-    <div class="task-card compact">
-      <div class="task-top">
-        <div>
-          <div class="task-room">Chambre 206</div>
-          <div class="task-type">Standard · Départ</div>
+    <div class="card-grid">
+      <div class="task-card compact">
+        <div class="task-top">
+          <div>
+            <div class="task-room">Chambre 206</div>
+            <div class="task-type">Standard · Départ</div>
+          </div>
+          <span class="badge">À faire</span>
+        </div>
+      </div>
+
+      <div class="task-card compact">
+        <div class="task-top">
+          <div>
+            <div class="task-room">Chambre 301</div>
+            <div class="task-type">Suite</div>
+          </div>
+          <span class="tag vip">VIP</span>
         </div>
         <span class="badge">À faire</span>
       </div>
-    </div>
 
-    <div class="task-card compact">
-      <div class="task-top">
-        <div>
-          <div class="task-room">Chambre 301</div>
-          <div class="task-type">Suite</div>
+      <div class="task-card compact" style="grid-column:1 / -1;">
+        <div class="restock-row">
+          <div class="restock-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+          </div>
+          <div class="restock-body">
+            <div class="task-room" style="font-size:16px">Chambre 301 — Réassort</div>
+            <div class="task-type">Demandé par Nadia · 4 produits · 8 unités</div>
+          </div>
+          <svg class="restock-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
         </div>
-        <span class="tag vip">VIP</span>
-      </div>
-      <span class="badge">À faire</span>
-    </div>
-
-    <div class="task-card compact">
-      <div class="restock-row">
-        <div class="restock-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
-        </div>
-        <div class="restock-body">
-          <div class="task-room" style="font-size:16px">Chambre 301 — Réassort</div>
-          <div class="task-type">Demandé par Nadia · 4 produits · 8 unités</div>
-        </div>
-        <svg class="restock-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
       </div>
     </div>
 

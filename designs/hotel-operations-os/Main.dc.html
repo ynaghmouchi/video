@@ -41,10 +41,10 @@
   body{margin:0;}
   a{color:var(--accent);text-decoration:none;}
   a:hover{color:var(--accent-strong);}
-  .app{width:1440px;min-height:1600px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;}
+  .app{width:1180px;min-height:1560px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;}
 
   /* top nav */
-  .topnav{height:72px;flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;padding:0 28px;}
+  .topnav{height:68px;flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:0 20px;}
   .brand{display:flex;align-items:center;gap:10px;}
   .brand-mark{width:34px;height:34px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .brand-mark svg{width:18px;height:18px;}
@@ -72,29 +72,29 @@
 
   /* shell */
   .shell{display:flex;flex:1;}
-  .sidebar{width:232px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:20px 14px;display:flex;flex-direction:column;gap:2px;}
-  .side-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;font-size:14px;font-weight:600;color:var(--ink-soft);}
-  .side-item svg{width:19px;height:19px;flex-shrink:0;}
+  .sidebar{width:188px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:18px 10px;display:flex;flex-direction:column;gap:2px;}
+  .side-item{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--ink-soft);}
+  .side-item svg{width:18px;height:18px;flex-shrink:0;}
   .side-item.active{background:var(--accent-soft);color:var(--accent-ink);}
   .side-item.active svg{color:var(--accent-ink);}
 
-  .main{flex:1;padding:32px 36px 56px;display:flex;flex-direction:column;gap:24px;}
+  .main{flex:1;padding:24px 26px 48px;display:flex;flex-direction:column;gap:20px;}
   .page-head{display:flex;align-items:baseline;justify-content:space-between;}
-  .page-title{font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);margin:0;}
+  .page-title{font-family:var(--font-display);font-size:25px;font-weight:600;color:var(--ink);margin:0;}
   .page-sub{font-size:14px;color:var(--ink-faint);margin:4px 0 0;}
 
-  .kpi-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;}
-  .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:10px;}
+  .kpi-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;}
+  .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:15px 16px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:8px;}
   .kpi-top{display:flex;align-items:center;justify-content:space-between;}
-  .kpi-icon{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
-  .kpi-icon svg{width:17px;height:17px;}
-  .kpi-value{font-family:var(--font-display);font-size:32px;font-weight:600;line-height:1;color:var(--ink);}
+  .kpi-icon{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;}
+  .kpi-icon svg{width:16px;height:16px;}
+  .kpi-value{font-family:var(--font-display);font-size:27px;font-weight:600;line-height:1;color:var(--ink);}
   .kpi-value.urgent{color:var(--red-ink);}
-  .kpi-label{font-size:13px;color:var(--ink-soft);}
+  .kpi-label{font-size:12.5px;color:var(--ink-soft);}
 
-  .columns{display:flex;gap:24px;align-items:flex-start;}
+  .columns{display:flex;gap:18px;align-items:flex-start;}
   .col-main{flex:1;min-width:0;}
-  .col-side{width:340px;flex-shrink:0;}
+  .col-side{width:280px;flex-shrink:0;}
 
   .panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-sm);padding:22px 22px 8px;}
   .panel-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:16px;}
@@ -112,8 +112,8 @@
   .room-id{width:126px;flex-shrink:0;}
   .room-num{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);}
   .room-type{font-size:12.5px;color:var(--ink-faint);}
-  .room-meta{flex:1;display:flex;align-items:center;gap:22px;min-width:0;}
-  .meta-item{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-soft);white-space:nowrap;}
+  .room-meta{flex:1;display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;min-width:0;}
+  .meta-item{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-soft);white-space:nowrap;}
   .meta-item svg{width:15px;height:15px;color:var(--ink-faint);flex-shrink:0;}
   .meta-item .mini-avatar{width:22px;height:22px;border-radius:50%;background:var(--surface-alt);color:var(--ink-soft);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;}
   .tag{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px;letter-spacing:0.01em;}
@@ -382,8 +382,8 @@
             <div class="team-row">
               <div class="team-who"><div class="avatar" style="background:var(--surface-alt);color:var(--ink-soft)">F</div><span class="name">Fatima</span></div>
               <div class="team-bar-wrap">
-                <div class="team-bar"><div class="seg-done" style="width:57%"></div><div class="seg-progress" style="width:29%"></div></div>
-                <span class="team-caption">4 terminées · 2 en cours · 1 à faire</span>
+                <div class="team-bar"><div class="seg-done" style="width:57%"></div><div class="seg-progress" style="width:14%"></div></div>
+                <span class="team-caption">4 terminées · 1 en cours · 2 à faire</span>
               </div>
               <div class="team-count">7 chambres</div>
             </div>

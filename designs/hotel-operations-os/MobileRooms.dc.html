@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:oklch(0.98 0.006 75);
+    --surface:oklch(1 0 0);
+    --surface-alt:oklch(0.965 0.007 75);
+    --border:oklch(0.905 0.008 70);
+    --ink:oklch(0.24 0.015 50);
+    --ink-soft:oklch(0.47 0.016 50);
+    --ink-faint:oklch(0.63 0.012 60);
+    --accent:oklch(0.47 0.11 35);
+    --accent-strong:oklch(0.38 0.105 35);
+    --accent-soft:oklch(0.93 0.028 40);
+    --accent-ink:oklch(0.36 0.10 35);
+    --green:oklch(0.56 0.13 145);
+    --green-soft:oklch(0.94 0.045 145);
+    --green-ink:oklch(0.40 0.11 145);
+    --orange:oklch(0.70 0.16 60);
+    --orange-soft:oklch(0.95 0.055 60);
+    --orange-ink:oklch(0.46 0.13 55);
+    --red-ink:oklch(0.46 0.17 25);
+    --red-soft:oklch(0.94 0.055 25);
+    --grey-soft:oklch(0.93 0.007 260);
+    --grey-ink:oklch(0.45 0.012 260);
+    --font-display:'Newsreader', 'Iowan Old Style', Georgia, serif;
+    --font-sans:'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    --shadow-sm:0 1px 2px rgba(30,20,10,0.05), 0 1px 10px rgba(30,20,10,0.03);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  .phone{width:768px;height:900px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
+  .content{flex:1;padding:30px 34px 8px;display:flex;flex-direction:column;gap:20px;min-height:0;}
+
+  .head h1{font-family:var(--font-display);font-size:25px;font-weight:600;margin:0;color:var(--ink);}
+  .head p{margin:3px 0 0;font-size:14px;color:var(--ink-faint);}
+
+  .day-tabs{display:flex;gap:6px;background:var(--surface-alt);padding:4px;border-radius:11px;width:fit-content;}
+  .day-tab{font-size:13px;font-weight:600;color:var(--ink-soft);padding:8px 16px;border-radius:8px;}
+  .day-tab.active{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm);}
+
+  .room-list{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sm);overflow:hidden;}
+  .room-row{display:flex;align-items:center;gap:14px;padding:15px 18px;border-top:1px solid var(--border);}
+  .room-row:first-child{border-top:none;}
+  .status-chip{width:38px;height:38px;border-radius:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .status-chip svg{width:18px;height:18px;}
+  .room-id{flex:1;min-width:0;}
+  .room-num{font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--ink);}
+  .room-type{font-size:12.5px;color:var(--ink-faint);}
+  .meta{font-size:12.5px;color:var(--ink-soft);white-space:nowrap;}
+  .tag{font-size:10.5px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:2px 7px;border-radius:6px;margin-left:6px;}
+  .badge{font-size:11.5px;font-weight:700;padding:6px 12px;border-radius:999px;white-space:nowrap;flex-shrink:0;}
+  .badge.green{color:var(--green-ink);background:var(--green-soft);}
+  .badge.orange{color:var(--orange-ink);background:var(--orange-soft);}
+  .badge.grey{color:var(--grey-ink);background:var(--grey-soft);}
+
+  .navbar{flex-shrink:0;display:flex;border-top:1px solid var(--border);background:var(--surface);padding:10px 8px 16px;}
+  .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink-faint);}
+  .nav-item svg{width:22px;height:22px;}
+  .nav-item span{font-size:10.5px;font-weight:600;}
+  .nav-item.active{color:var(--accent-ink);}
+</style>
+</helmet>
+
+<div class="phone">
+  <div class="content">
+    <div class="head">
+      <h1>Mes chambres</h1>
+      <p>Dimanche 6 septembre · 4/7 terminées</p>
+    </div>
+
+    <div class="day-tabs">
+      <div class="day-tab active">Aujourd'hui</div>
+      <div class="day-tab">Demain</div>
+    </div>
+
+    <div class="room-list">
+      <div class="room-row">
+        <div class="status-chip" style="background:var(--green-soft);color:var(--green-ink)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div class="room-id"><div class="room-num">Chambre 201</div><div class="room-type">Standard</div></div>
+        <span class="meta">Terminée à 09:15</span>
+        <span class="badge green">Validée</span>
+      </div>
+      <div class="room-row">
+        <div class="status-chip" style="background:var(--green-soft);color:var(--green-ink)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div class="room-id"><div class="room-num">Chambre 204</div><div class="room-type">Standard</div></div>
+        <span class="meta">Terminée à 09:50</span>
+        <span class="badge green">Validée</span>
+      </div>
+      <div class="room-row">
+        <div class="status-chip" style="background:var(--green-soft);color:var(--green-ink)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div class="room-id"><div class="room-num">Chambre 210</div><div class="room-type">Standard</div></div>
+        <span class="meta">Terminée à 10:40</span>
+        <span class="badge green">Validée</span>
+      </div>
+      <div class="room-row">
+        <div class="status-chip" style="background:var(--green-soft);color:var(--green-ink)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <div class="room-id"><div class="room-num">Chambre 214</div><div class="room-type">Deluxe</div></div>
+        <span class="meta">Terminée à 11:20</span>
+        <span class="badge green">Validée</span>
+      </div>
+      <div class="room-row">
+        <div class="status-chip" style="background:var(--orange-soft);color:var(--orange-ink)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        </div>
+        <div class="room-id"><div class="room-num">Chambre 205<span class="tag">Priorité</span></div><div class="room-type">Deluxe</div></div>
+        <span class="meta">Départ + arrivée 14:00</span>
+        <span class="badge orange">En cours</span>
+      </div>
+      <div class="room-row">
+        <div class="status-chip" style="background:var(--grey-soft);color:var(--grey-ink)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+        </div>
+        <div class="room-id"><div class="room-num">Chambre 206</div><div class="room-type">Standard</div></div>
+        <span class="meta">Départ</span>
+        <span class="badge grey">À faire</span>
+      </div>
+      <div class="room-row">
+        <div class="status-chip" style="background:var(--grey-soft);color:var(--grey-ink)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12h8"/></svg>
+        </div>
+        <div class="room-id"><div class="room-num">Chambre 301<span class="tag">VIP</span></div><div class="room-type">Suite</div></div>
+        <span class="meta">Recouche</span>
+        <span class="badge grey">À faire</span>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="navbar">
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span>Mes tâches</span>
+    </div>
+    <div class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V11a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10"/><path d="M3 11l3-6h12l3 6"/><path d="M3 21h18"/></svg>
+      <span>Chambres</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 18a1.5 1.5 0 0 0 1.3 2.2h16.4a1.5 1.5 0 0 0 1.3-2.2L13.7 3.9a1.5 1.5 0 0 0-2.6 0z"/></svg>
+      <span>Incidents</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.6 3.6-6.5 8-6.5s8 2.9 8 6.5"/></svg>
+      <span>Profil</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

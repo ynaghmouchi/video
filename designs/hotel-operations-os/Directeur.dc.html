@@ -1,0 +1,430 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:oklch(0.98 0.006 75);
+    --surface:oklch(1 0 0);
+    --surface-alt:oklch(0.965 0.007 75);
+    --border:oklch(0.905 0.008 70);
+    --ink:oklch(0.24 0.015 50);
+    --ink-soft:oklch(0.47 0.016 50);
+    --ink-faint:oklch(0.63 0.012 60);
+    --accent:oklch(0.47 0.11 35);
+    --accent-strong:oklch(0.38 0.105 35);
+    --accent-soft:oklch(0.93 0.028 40);
+    --accent-ink:oklch(0.36 0.10 35);
+    --green:oklch(0.56 0.13 145);
+    --green-soft:oklch(0.94 0.045 145);
+    --green-ink:oklch(0.40 0.11 145);
+    --orange:oklch(0.70 0.16 60);
+    --orange-soft:oklch(0.95 0.055 60);
+    --orange-ink:oklch(0.46 0.13 55);
+    --red:oklch(0.55 0.19 25);
+    --red-soft:oklch(0.94 0.055 25);
+    --red-ink:oklch(0.46 0.17 25);
+    --grey:oklch(0.58 0.01 260);
+    --grey-soft:oklch(0.93 0.007 260);
+    --grey-ink:oklch(0.45 0.012 260);
+    --font-display:'Newsreader', 'Iowan Old Style', Georgia, serif;
+    --font-sans:'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    --shadow-sm:0 1px 2px rgba(30,20,10,0.05), 0 1px 10px rgba(30,20,10,0.03);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  a{color:var(--accent);text-decoration:none;}
+  .app{width:1440px;min-height:1800px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;}
+
+  .topnav{height:72px;flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:24px;padding:0 28px;}
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand-mark{width:34px;height:34px;border-radius:9px;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .brand-mark svg{width:18px;height:18px;}
+  .brand-word{font-family:var(--font-display);font-size:17px;font-weight:600;color:var(--ink);white-space:nowrap;}
+  .nav-divider{width:1px;height:28px;background:var(--border);}
+  .hotel-switch{display:flex;align-items:center;gap:10px;padding:6px 12px 6px 4px;border-radius:10px;}
+  .hotel-switch .label{font-size:11px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:0.06em;display:block;}
+  .hotel-switch .value{font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:6px;}
+  .topnav-spacer{flex:1;}
+  .lang-toggle{display:flex;align-items:center;background:var(--surface-alt);border:1px solid var(--border);border-radius:999px;padding:3px;gap:2px;}
+  .lang-toggle .opt{font-size:12px;font-weight:700;padding:5px 11px;border-radius:999px;color:var(--ink-faint);}
+  .lang-toggle .opt.active{background:var(--surface);color:var(--ink);box-shadow:var(--shadow-sm);}
+  .lang-toggle .opt.soon{display:flex;align-items:center;gap:5px;}
+  .lang-toggle .soon-badge{font-size:9px;font-weight:700;color:var(--accent-ink);background:var(--accent-soft);padding:1px 5px;border-radius:6px;}
+  .icon-btn{position:relative;width:38px;height:38px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--ink-soft);}
+  .icon-btn svg{width:20px;height:20px;}
+  .icon-btn .dot{position:absolute;top:6px;right:7px;width:8px;height:8px;border-radius:50%;background:var(--red);border:2px solid var(--surface);}
+  .profile-chip{display:flex;align-items:center;gap:10px;padding:4px 10px 4px 4px;border-radius:12px;}
+  .avatar{width:34px;height:34px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;flex-shrink:0;}
+  .profile-chip .who{display:flex;flex-direction:column;line-height:1.25;}
+  .profile-chip .who .name{font-size:13.5px;font-weight:700;color:var(--ink);}
+  .profile-chip .who .role{font-size:11.5px;color:var(--ink-faint);}
+
+  .shell{display:flex;flex:1;}
+  .sidebar{width:232px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:20px 14px;display:flex;flex-direction:column;gap:2px;}
+  .side-item{display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:10px;font-size:14px;font-weight:600;color:var(--ink-soft);}
+  .side-item svg{width:19px;height:19px;flex-shrink:0;}
+  .side-item.active{background:var(--accent-soft);color:var(--accent-ink);}
+  .side-item.active svg{color:var(--accent-ink);}
+
+  .main{flex:1;padding:32px 36px 56px;display:flex;flex-direction:column;gap:24px;}
+  .page-head{display:flex;align-items:center;justify-content:space-between;}
+  .page-title{font-family:var(--font-display);font-size:28px;font-weight:600;color:var(--ink);margin:0;}
+  .page-sub{font-size:14px;color:var(--ink-faint);margin:4px 0 0;}
+  .period-chip{display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:11px;padding:10px 14px;font-size:14px;font-weight:600;color:var(--ink);box-shadow:var(--shadow-sm);}
+  .period-chip svg{width:15px;height:15px;color:var(--ink-faint);}
+
+  .kpi-row{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:16px;}
+  .kpi-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 20px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:10px;}
+  .kpi-value{font-family:var(--font-display);font-size:30px;font-weight:600;line-height:1;color:var(--ink);}
+  .kpi-label{font-size:13px;color:var(--ink-soft);}
+  .kpi-delta{font-size:12px;font-weight:700;display:inline-flex;align-items:center;gap:4px;}
+  .kpi-delta svg{width:12px;height:12px;}
+  .kpi-delta.up{color:var(--green-ink);}
+  .kpi-delta.down{color:var(--red-ink);}
+
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-sm);padding:24px 26px;}
+  .panel-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;}
+  .panel-title{font-size:16px;font-weight:700;color:var(--ink);margin:0;}
+  .panel-cta{font-size:13px;font-weight:700;color:var(--accent-ink);display:flex;align-items:center;gap:5px;}
+  .panel-cta svg{width:14px;height:14px;}
+
+  .legend{display:flex;gap:18px;}
+  .legend-item{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--ink-soft);}
+  .legend-dot{width:9px;height:9px;border-radius:3px;}
+
+  .chart-wrap{display:flex;flex-direction:column;gap:12px;}
+  .chart-days{display:flex;justify-content:space-between;padding:0 5px;}
+  .chart-days span{font-size:11.5px;color:var(--ink-faint);width:88px;text-align:center;}
+
+  table{width:100%;border-collapse:collapse;}
+  th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-faint);font-weight:700;padding:0 12px 12px;border-bottom:1px solid var(--border);}
+  td{padding:14px 12px;border-bottom:1px solid var(--border);font-size:14px;color:var(--ink);}
+  tr:last-child td{border-bottom:none;}
+  .emp-cell{display:flex;align-items:center;gap:10px;font-weight:700;}
+  .score-badge{font-size:12.5px;font-weight:700;padding:5px 11px;border-radius:999px;}
+  .score-badge.green{color:var(--green-ink);background:var(--green-soft);}
+  .score-badge.orange{color:var(--orange-ink);background:var(--orange-soft);}
+
+  .stock-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:22px;}
+  .stock-card{border:1px solid var(--border);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px;}
+  .stock-label{font-size:13px;color:var(--ink-soft);font-weight:600;}
+  .stock-value{font-family:var(--font-display);font-size:22px;font-weight:600;}
+  .stock-value.red{color:var(--red-ink);}
+  .stock-value.orange{color:var(--orange-ink);}
+  .stock-value.grey{color:var(--grey-ink);}
+
+  .compare{border-top:1px solid var(--border);padding-top:20px;display:flex;flex-direction:column;gap:14px;}
+  .compare-title{font-size:13.5px;font-weight:700;color:var(--ink);}
+  .compare-row{display:flex;align-items:center;gap:14px;}
+  .compare-name{width:90px;flex-shrink:0;font-size:13px;color:var(--ink-soft);}
+  .compare-track{flex:1;height:16px;border-radius:8px;background:var(--surface-alt);overflow:hidden;}
+  .compare-fill{height:100%;border-radius:8px;}
+  .compare-fill.theo{background:var(--grey);}
+  .compare-fill.real{background:var(--red);}
+  .compare-value{width:60px;text-align:right;font-size:13px;font-weight:700;color:var(--ink);}
+  .compare-gap{font-size:12.5px;font-weight:700;color:var(--red-ink);background:var(--red-soft);padding:4px 10px;border-radius:999px;align-self:flex-start;}
+
+  .bottom-row{display:flex;gap:24px;align-items:stretch;}
+  .bottom-col{flex:1;min-width:0;}
+  .alert-list{display:flex;flex-direction:column;}
+  .alert-row{display:flex;align-items:flex-start;gap:12px;padding:13px 0;border-top:1px solid var(--border);}
+  .alert-row:first-child{border-top:none;}
+  .alert-dot{width:32px;height:32px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+  .alert-dot svg{width:15px;height:15px;}
+  .alert-text{font-size:13.5px;color:var(--ink);line-height:1.4;padding-top:3px;}
+  .alert-text b{font-weight:700;}
+
+  .insight-panel{background:linear-gradient(180deg, var(--accent-soft) 0%, var(--surface) 55%);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow-sm);padding:24px 26px;height:100%;display:flex;flex-direction:column;gap:14px;}
+  .insight-head{display:flex;align-items:center;gap:10px;}
+  .insight-icon{width:34px;height:34px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .insight-icon svg{width:17px;height:17px;color:#fff;}
+  .insight-title{font-size:15px;font-weight:700;color:var(--ink);}
+  .insight-body{font-size:14px;line-height:1.55;color:var(--ink-soft);flex:1;}
+  .insight-cta{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:700;color:var(--accent-ink);align-self:flex-start;}
+  .insight-cta svg{width:14px;height:14px;}
+</style>
+</helmet>
+
+<div class="app">
+
+  <div class="topnav">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V9l8-5 8 5v12"/><path d="M9 21v-7h6v7"/></svg>
+      </div>
+      <span class="brand-word">Hotel Operations OS</span>
+    </div>
+    <div class="nav-divider"></div>
+    <div class="hotel-switch">
+      <div>
+        <span class="label">Hôtel</span>
+        <span class="value">Atlas Marrakech
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;color:var(--ink-faint)"><path d="M6 9l6 6 6-6"/></svg>
+        </span>
+      </div>
+    </div>
+    <div class="topnav-spacer"></div>
+    <div class="lang-toggle">
+      <div class="opt active">FR</div>
+      <div class="opt soon">AR <span class="soon-badge">Bientôt · RTL</span></div>
+    </div>
+    <div class="icon-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+      <div class="dot"></div>
+    </div>
+    <div class="profile-chip">
+      <div class="avatar">K</div>
+      <div class="who">
+        <span class="name">Karim</span>
+        <span class="role">Directeur général</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="shell">
+    <div class="sidebar">
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="2"/><rect x="13" y="3" width="8" height="8" rx="2"/><rect x="3" y="13" width="8" height="8" rx="2"/><rect x="13" y="13" width="8" height="8" rx="2"/></svg>
+        Vue générale
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V11a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10"/><path d="M3 11l3-6h12l3 6"/><path d="M3 21h18"/></svg>
+        Chambres
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 20l6-11"/><path d="M11 9l3-6 5 3-3 6"/><circle cx="17" cy="17" r="3.4"/></svg>
+        Housekeeping
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 1-5.4 5.4L4 17l3 3 5.3-5.3a4 4 0 0 1 5.4-5.4L21 6l-3-3z"/></svg>
+        Maintenance
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg>
+        Stock
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.6a2 2 0 0 0 2-1.6L21 8H6"/></svg>
+        Achats
+      </div>
+      <div class="side-item active">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M12 20V4M20 20v-7"/></svg>
+        Rapports
+      </div>
+      <div class="side-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 13.5a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V20a2 2 0 0 1-4 0v-.1a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H4a2 2 0 0 1 0-4h.1a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34H10a1.7 1.7 0 0 0 1-1.55V4a2 2 0 0 1 4 0v.1a1.7 1.7 0 0 0 1 1.55 1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87V10a1.7 1.7 0 0 0 1.55 1H20a2 2 0 0 1 0 4h-.1a1.7 1.7 0 0 0-1.55 1z"/></svg>
+        Paramètres
+      </div>
+    </div>
+
+    <div class="main">
+      <div class="page-head">
+        <div>
+          <h1 class="page-title">Performance opérationnelle</h1>
+          <p class="page-sub">Atlas Marrakech</p>
+        </div>
+        <div class="period-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
+          Septembre 2026
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:13px;height:13px;color:var(--ink-faint)"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+
+      <div class="kpi-row">
+        <div class="kpi-card">
+          <span class="kpi-value">78%</span>
+          <span class="kpi-label">Occupation</span>
+          <span class="kpi-delta up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>+4 pts vs août</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-value">1 284</span>
+          <span class="kpi-label">Chambres nettoyées</span>
+          <span class="kpi-delta up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>+6% vs août</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-value">26 min</span>
+          <span class="kpi-label">Temps moyen</span>
+          <span class="kpi-delta down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg>+2 min vs août</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-value">94%</span>
+          <span class="kpi-label">Taux de validation</span>
+          <span class="kpi-delta up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15l7-7 7 7"/></svg>+1 pt vs août</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-value">38 MAD</span>
+          <span class="kpi-label">Coût opérationnel / chambre</span>
+          <span class="kpi-delta down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg>+3 MAD vs août</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Activité Housekeeping</h2>
+          <div class="legend">
+            <div class="legend-item"><div class="legend-dot" style="background:var(--grey)"></div>À nettoyer</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>Terminées</div>
+            <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>Validées</div>
+          </div>
+        </div>
+        <div class="chart-wrap">
+          <svg viewBox="0 0 640 190" width="100%" height="190" preserveAspectRatio="none">
+            <line x1="0" y1="0" x2="640" y2="0" stroke="var(--border)" stroke-width="1"/>
+            <line x1="0" y1="60" x2="640" y2="60" stroke="var(--border)" stroke-width="1"/>
+            <line x1="0" y1="120" x2="640" y2="120" stroke="var(--border)" stroke-width="1"/>
+            <line x1="0" y1="180" x2="640" y2="180" stroke="var(--border)" stroke-width="1"/>
+
+            <g><rect x="12" y="55" width="16" height="125" rx="3" fill="var(--grey)"/><rect x="30" y="65" width="16" height="115" rx="3" fill="var(--orange)"/><rect x="48" y="74" width="16" height="106" rx="3" fill="var(--green)"/></g>
+            <g><rect x="102" y="65" width="16" height="115" rx="3" fill="var(--grey)"/><rect x="120" y="72" width="16" height="108" rx="3" fill="var(--orange)"/><rect x="138" y="79" width="16" height="101" rx="3" fill="var(--green)"/></g>
+            <g><rect x="192" y="48" width="16" height="132" rx="3" fill="var(--grey)"/><rect x="210" y="60" width="16" height="120" rx="3" fill="var(--orange)"/><rect x="228" y="67" width="16" height="113" rx="3" fill="var(--green)"/></g>
+            <g><rect x="282" y="36" width="16" height="144" rx="3" fill="var(--grey)"/><rect x="300" y="48" width="16" height="132" rx="3" fill="var(--orange)"/><rect x="318" y="60" width="16" height="120" rx="3" fill="var(--green)"/></g>
+            <g><rect x="372" y="41" width="16" height="139" rx="3" fill="var(--grey)"/><rect x="390" y="50" width="16" height="130" rx="3" fill="var(--orange)"/><rect x="408" y="60" width="16" height="120" rx="3" fill="var(--green)"/></g>
+            <g><rect x="462" y="29" width="16" height="151" rx="3" fill="var(--grey)"/><rect x="480" y="41" width="16" height="139" rx="3" fill="var(--orange)"/><rect x="498" y="50" width="16" height="130" rx="3" fill="var(--green)"/></g>
+            <g><rect x="552" y="67" width="16" height="113" rx="3" fill="var(--grey)"/><rect x="570" y="74" width="16" height="106" rx="3" fill="var(--orange)"/><rect x="588" y="82" width="16" height="98" rx="3" fill="var(--green)"/></g>
+          </svg>
+          <div class="chart-days">
+            <span>Lun</span><span>Mar</span><span>Mer</span><span>Jeu</span><span>Ven</span><span>Sam</span><span>Dim</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Performance de l'équipe</h2>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Employé</th><th>Chambres</th><th>Temps moyen</th><th>Corrections</th><th>Score</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><div class="emp-cell"><div class="avatar" style="background:var(--surface-alt);color:var(--ink-soft)">F</div>Fatima</div></td>
+              <td>142</td>
+              <td>25 min</td>
+              <td>4</td>
+              <td><span class="score-badge green">94%</span></td>
+            </tr>
+            <tr>
+              <td><div class="emp-cell"><div class="avatar" style="background:var(--surface-alt);color:var(--ink-soft)">S</div>Sara</div></td>
+              <td>137</td>
+              <td>27 min</td>
+              <td>7</td>
+              <td><span class="score-badge orange">91%</span></td>
+            </tr>
+            <tr>
+              <td><div class="emp-cell"><div class="avatar" style="background:var(--surface-alt);color:var(--ink-soft)">A</div>Amina</div></td>
+              <td>129</td>
+              <td>24 min</td>
+              <td>3</td>
+              <td><span class="score-badge green">96%</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head">
+          <h2 class="panel-title">Consommation &amp; Stock</h2>
+        </div>
+        <div class="stock-grid">
+          <div class="stock-card">
+            <span class="stock-label">Shampoing</span>
+            <span class="stock-value red">+27%</span>
+            <span style="font-size:12px;color:var(--ink-faint)">vs moyenne</span>
+          </div>
+          <div class="stock-card">
+            <span class="stock-label">Serviettes</span>
+            <span class="stock-value grey">−8%</span>
+            <span style="font-size:12px;color:var(--ink-faint)">vs moyenne</span>
+          </div>
+          <div class="stock-card">
+            <span class="stock-label">Produits d'entretien</span>
+            <span class="stock-value orange">+12%</span>
+            <span style="font-size:12px;color:var(--ink-faint)">vs moyenne</span>
+          </div>
+          <div class="stock-card">
+            <span class="stock-label">Papier toilette</span>
+            <span class="stock-value red">Critique</span>
+            <span style="font-size:12px;color:var(--ink-faint)">stock économat</span>
+          </div>
+        </div>
+
+        <div class="compare">
+          <div class="compare-title">Consommation théorique vs réelle — Shampoing</div>
+          <div class="compare-row">
+            <span class="compare-name">Théorique</span>
+            <div class="compare-track"><div class="compare-fill theo" style="width:78%"></div></div>
+            <span class="compare-value">420</span>
+          </div>
+          <div class="compare-row">
+            <span class="compare-name">Réelle</span>
+            <div class="compare-track"><div class="compare-fill real" style="width:100%"></div></div>
+            <span class="compare-value">535</span>
+          </div>
+          <span class="compare-gap">Écart +27%</span>
+        </div>
+      </div>
+
+      <div class="bottom-row">
+        <div class="bottom-col" style="flex:1.3">
+          <div class="panel" style="height:100%">
+            <div class="panel-head">
+              <h2 class="panel-title">Alertes intelligentes</h2>
+            </div>
+            <div class="alert-list">
+              <div class="alert-row">
+                <div class="alert-dot" style="background:var(--red-soft);color:var(--red-ink)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><circle cx="12" cy="12" r="9"/></svg>
+                </div>
+                <div class="alert-text">Hausse anormale de consommation de shampoing</div>
+              </div>
+              <div class="alert-row">
+                <div class="alert-dot" style="background:var(--orange-soft);color:var(--orange-ink)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+                </div>
+                <div class="alert-text"><b>Chambre 315</b> corrigée 4 fois cette semaine</div>
+              </div>
+              <div class="alert-row">
+                <div class="alert-dot" style="background:var(--orange-soft);color:var(--orange-ink)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+                </div>
+                <div class="alert-text">3 chambres ont dépassé le temps moyen de nettoyage</div>
+              </div>
+              <div class="alert-row">
+                <div class="alert-dot" style="background:var(--red-soft);color:var(--red-ink)">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/></svg>
+                </div>
+                <div class="alert-text">2 produits risquent la rupture sous 7 jours</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bottom-col">
+          <div class="insight-panel">
+            <div class="insight-head">
+              <div class="insight-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3M12 18v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M3 12h3M18 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="3.2"/></svg>
+              </div>
+              <span class="insight-title">Insight opérationnel</span>
+            </div>
+            <p class="insight-body">Les coûts housekeeping sont 8% plus élevés cette semaine. L'augmentation provient principalement des amenities et du linge.</p>
+            <span class="insight-cta">Voir l'analyse détaillée
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

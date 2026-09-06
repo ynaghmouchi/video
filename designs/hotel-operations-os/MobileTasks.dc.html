@@ -1,0 +1,160 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,500;0,6..72,600;1,6..72,500&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --bg:oklch(0.98 0.006 75);
+    --surface:oklch(1 0 0);
+    --surface-alt:oklch(0.965 0.007 75);
+    --border:oklch(0.905 0.008 70);
+    --ink:oklch(0.24 0.015 50);
+    --ink-soft:oklch(0.47 0.016 50);
+    --ink-faint:oklch(0.63 0.012 60);
+    --accent:oklch(0.47 0.11 35);
+    --accent-strong:oklch(0.38 0.105 35);
+    --accent-soft:oklch(0.93 0.028 40);
+    --accent-ink:oklch(0.36 0.10 35);
+    --green:oklch(0.56 0.13 145);
+    --green-soft:oklch(0.94 0.045 145);
+    --green-ink:oklch(0.40 0.11 145);
+    --orange:oklch(0.70 0.16 60);
+    --orange-soft:oklch(0.95 0.055 60);
+    --orange-ink:oklch(0.46 0.13 55);
+    --red:oklch(0.55 0.19 25);
+    --red-soft:oklch(0.94 0.055 25);
+    --red-ink:oklch(0.46 0.17 25);
+    --grey:oklch(0.58 0.01 260);
+    --grey-soft:oklch(0.93 0.007 260);
+    --grey-ink:oklch(0.45 0.012 260);
+    --font-display:'Newsreader', 'Iowan Old Style', Georgia, serif;
+    --font-sans:'Public Sans', 'Segoe UI', system-ui, sans-serif;
+    --shadow-sm:0 1px 2px rgba(30,20,10,0.05), 0 1px 10px rgba(30,20,10,0.03);
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;}
+  a{color:var(--accent);text-decoration:none;}
+  .phone{width:390px;height:844px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;overflow:hidden;}
+  .content{flex:1;padding:26px 20px 8px;display:flex;flex-direction:column;gap:22px;min-height:0;}
+  .greeting h1{font-family:var(--font-display);font-size:23px;font-weight:600;margin:0;color:var(--ink);}
+  .greeting p{margin:3px 0 0;font-size:13.5px;color:var(--ink-faint);}
+
+  .progress-block{display:flex;flex-direction:column;gap:8px;}
+  .progress-top{display:flex;align-items:baseline;justify-content:space-between;}
+  .progress-label{font-size:15px;font-weight:700;color:var(--ink);}
+  .progress-track{height:9px;border-radius:999px;background:var(--grey-soft);overflow:hidden;}
+  .progress-fill{height:100%;background:var(--green);border-radius:999px;width:57%;}
+
+  .section-title{font-size:15px;font-weight:700;color:var(--ink);margin:0 0 -8px;}
+
+  .task-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-sm);padding:18px;display:flex;flex-direction:column;gap:12px;}
+  .task-card.compact{gap:4px;}
+  .task-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+  .task-room{font-family:var(--font-display);font-size:19px;font-weight:600;color:var(--ink);}
+  .task-type{font-size:12.5px;color:var(--ink-faint);margin-top:2px;}
+  .tag{font-size:11px;font-weight:700;padding:4px 9px;border-radius:7px;white-space:nowrap;}
+  .tag.high{color:var(--red-ink);background:var(--red-soft);}
+  .tag.vip{color:var(--accent-ink);background:var(--accent-soft);}
+  .task-time{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-soft);}
+  .task-time svg{width:15px;height:15px;color:var(--ink-faint);}
+  .chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+  .chip{font-size:12px;font-weight:600;color:var(--ink-soft);background:var(--surface-alt);border:1px solid var(--border);padding:6px 11px;border-radius:999px;}
+  .btn-primary{background:var(--accent);color:#fff;font-size:15px;font-weight:700;padding:13px;border-radius:12px;text-align:center;}
+  .badge{font-size:12px;font-weight:700;padding:6px 12px;border-radius:999px;white-space:nowrap;color:var(--orange-ink);background:var(--orange-soft);align-self:flex-start;}
+
+  .navbar{flex-shrink:0;display:flex;border-top:1px solid var(--border);background:var(--surface);padding:10px 8px 16px;}
+  .nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:var(--ink-faint);}
+  .nav-item svg{width:22px;height:22px;}
+  .nav-item span{font-size:10.5px;font-weight:600;}
+  .nav-item.active{color:var(--accent-ink);}
+</style>
+</helmet>
+
+<div class="phone">
+  <div class="content">
+    <div class="greeting">
+      <h1>Bonjour Fatima</h1>
+      <p>Dimanche 6 septembre</p>
+    </div>
+
+    <div class="progress-block">
+      <div class="progress-top">
+        <span class="progress-label">4 / 7 chambres terminées</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill"></div></div>
+    </div>
+
+    <h2 class="section-title">Mes tâches</h2>
+
+    <div class="task-card">
+      <div class="task-top">
+        <div>
+          <div class="task-room">Chambre 205</div>
+          <div class="task-type">Chambre Deluxe</div>
+        </div>
+        <span class="tag high">Priorité haute</span>
+      </div>
+      <div class="task-time">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        Départ + arrivée à 14:00
+      </div>
+      <div class="chip-row">
+        <span class="chip">Nettoyage complet</span>
+        <span class="chip">Changement du linge</span>
+        <span class="chip">Salle de bain</span>
+        <span class="chip">Réassort amenities</span>
+      </div>
+      <div class="btn-primary">Commencer</div>
+    </div>
+
+    <div class="task-card compact">
+      <div class="task-top">
+        <div>
+          <div class="task-room">Chambre 206</div>
+          <div class="task-type">Standard · Départ</div>
+        </div>
+        <span class="badge">À faire</span>
+      </div>
+    </div>
+
+    <div class="task-card compact">
+      <div class="task-top">
+        <div>
+          <div class="task-room">Chambre 301</div>
+          <div class="task-type">Suite</div>
+        </div>
+        <span class="tag vip">VIP</span>
+      </div>
+      <span class="badge">À faire</span>
+    </div>
+
+  </div>
+
+  <div class="navbar">
+    <div class="nav-item active">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span>Mes tâches</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V11a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10"/><path d="M3 11l3-6h12l3 6"/><path d="M3 21h18"/></svg>
+      <span>Chambres</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 18a1.5 1.5 0 0 0 1.3 2.2h16.4a1.5 1.5 0 0 0 1.3-2.2L13.7 3.9a1.5 1.5 0 0 0-2.6 0z"/></svg>
+      <span>Incidents</span>
+    </div>
+    <div class="nav-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-3.6 3.6-6.5 8-6.5s8 2.9 8 6.5"/></svg>
+      <span>Profil</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+</body>
+</html>

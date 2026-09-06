@@ -8,3 +8,7 @@ out
 
 # Remotion bundle output
 build
+
+# Seeded Claude Design canvas builds (regenerate with seed-canvas.mjs from the .dc.html sources)
+designs/**/*.html
+!designs/**/*.dc.html

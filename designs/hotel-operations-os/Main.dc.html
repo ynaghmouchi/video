@@ -41,7 +41,7 @@
   body{margin:0;}
   a{color:var(--accent);text-decoration:none;}
   a:hover{color:var(--accent-strong);}
-  .app{width:1180px;min-height:1560px;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;}
+  .app{width:1180px;height:900px;overflow:hidden;background:var(--bg);font-family:var(--font-sans);color:var(--ink);display:flex;flex-direction:column;}
 
   /* top nav */
   .topnav{height:68px;flex-shrink:0;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:16px;padding:0 20px;}
@@ -71,14 +71,14 @@
   .profile-chip .who .role{font-size:11.5px;color:var(--ink-faint);}
 
   /* shell */
-  .shell{display:flex;flex:1;}
+  .shell{display:flex;flex:1;min-height:0;}
   .sidebar{width:188px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);padding:18px 10px;display:flex;flex-direction:column;gap:2px;}
   .side-item{display:flex;align-items:center;gap:11px;padding:9px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--ink-soft);}
   .side-item svg{width:18px;height:18px;flex-shrink:0;}
   .side-item.active{background:var(--accent-soft);color:var(--accent-ink);}
   .side-item.active svg{color:var(--accent-ink);}
 
-  .main{flex:1;padding:24px 26px 48px;display:flex;flex-direction:column;gap:20px;}
+  .main{flex:1;min-height:0;overflow-y:auto;padding:24px 26px 48px;display:flex;flex-direction:column;gap:20px;}
   .page-head{display:flex;align-items:baseline;justify-content:space-between;}
   .page-title{font-family:var(--font-display);font-size:25px;font-weight:600;color:var(--ink);margin:0;}
   .page-sub{font-size:14px;color:var(--ink-faint);margin:4px 0 0;}

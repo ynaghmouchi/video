@@ -7,26 +7,25 @@
   "artboards": [
     { "file": "Directeur.dc.html", "title": "Performance opérationnelle", "page": "directeur", "x": 0, "y": 0, "w": 1440, "h": 1800 },
 
-    { "file": "Main.dc.html", "title": "Housekeeping — Aujourd'hui", "page": "gouvernante", "x": 0, "y": 0, "w": 1180, "h": 1560 },
+    { "file": "Main.dc.html", "title": "Housekeeping — Aujourd'hui", "page": "gouvernante", "x": 0, "y": 0, "w": 1180, "h": 900 },
+    { "file": "Inspection.dc.html", "title": "Inspection & besoins produits", "page": "gouvernante", "x": 1280, "y": 0, "w": 1180, "h": 900 },
 
-    { "file": "Inspection.dc.html", "title": "Inspection & besoins produits", "page": "gouvernante", "x": 0, "y": 1710, "w": 1180, "h": 900 },
-    { "file": "Rooms.dc.html", "title": "Chambres", "page": "gouvernante", "x": 1280, "y": 1710, "w": 1180, "h": 1180 },
+    { "file": "Rooms.dc.html", "title": "Chambres", "page": "gouvernante", "x": 0, "y": 1050, "w": 1180, "h": 900 },
+    { "file": "Maintenance.dc.html", "title": "Maintenance", "page": "gouvernante", "x": 1280, "y": 1050, "w": 1180, "h": 900 },
 
-    { "file": "Maintenance.dc.html", "title": "Maintenance", "page": "gouvernante", "x": 0, "y": 3040, "w": 1180, "h": 1120 },
-    { "file": "Stock.dc.html", "title": "Stock", "page": "gouvernante", "x": 1280, "y": 3040, "w": 1180, "h": 1080 },
+    { "file": "Stock.dc.html", "title": "Stock", "page": "gouvernante", "x": 0, "y": 2100, "w": 1180, "h": 900 },
+    { "file": "Purchases.dc.html", "title": "Achats", "page": "gouvernante", "x": 1280, "y": 2100, "w": 1180, "h": 900 },
 
-    { "file": "Purchases.dc.html", "title": "Achats", "page": "gouvernante", "x": 0, "y": 4310, "w": 1180, "h": 1060 },
-    { "file": "Reports.dc.html", "title": "Rapports", "page": "gouvernante", "x": 1280, "y": 4310, "w": 1180, "h": 1120 },
+    { "file": "Reports.dc.html", "title": "Rapports", "page": "gouvernante", "x": 0, "y": 3150, "w": 1180, "h": 900 },
+    { "file": "Settings.dc.html", "title": "Paramètres", "page": "gouvernante", "x": 1280, "y": 3150, "w": 1180, "h": 900 },
 
-    { "file": "Settings.dc.html", "title": "Paramètres", "page": "gouvernante", "x": 0, "y": 5580, "w": 1180, "h": 1260 },
+    { "file": "MobileTasks.dc.html", "title": "Mes tâches", "page": "femme-de-chambre", "x": 0, "y": 0, "w": 768, "h": 1024 },
+    { "file": "MobileChecklist.dc.html", "title": "Checklist chambre 205", "page": "femme-de-chambre", "x": 868, "y": 0, "w": 768, "h": 1024 },
+    { "file": "MobileRestock.dc.html", "title": "Réassort chambre 301", "page": "femme-de-chambre", "x": 1736, "y": 0, "w": 768, "h": 1024 },
 
-    { "file": "MobileTasks.dc.html", "title": "Mes tâches", "page": "femme-de-chambre", "x": 0, "y": 0, "w": 768, "h": 820 },
-    { "file": "MobileChecklist.dc.html", "title": "Checklist chambre 205", "page": "femme-de-chambre", "x": 868, "y": 0, "w": 768, "h": 900 },
-    { "file": "MobileRestock.dc.html", "title": "Réassort chambre 301", "page": "femme-de-chambre", "x": 1736, "y": 0, "w": 768, "h": 760 },
-
-    { "file": "MobileRooms.dc.html", "title": "Mes chambres", "page": "femme-de-chambre", "x": 0, "y": 1050, "w": 768, "h": 900 },
-    { "file": "MobileIncidents.dc.html", "title": "Incidents", "page": "femme-de-chambre", "x": 868, "y": 1050, "w": 768, "h": 820 },
-    { "file": "MobileProfile.dc.html", "title": "Profil", "page": "femme-de-chambre", "x": 1736, "y": 1050, "w": 768, "h": 900 }
+    { "file": "MobileRooms.dc.html", "title": "Mes chambres", "page": "femme-de-chambre", "x": 0, "y": 1174, "w": 768, "h": 1024 },
+    { "file": "MobileIncidents.dc.html", "title": "Incidents", "page": "femme-de-chambre", "x": 868, "y": 1174, "w": 768, "h": 1024 },
+    { "file": "MobileProfile.dc.html", "title": "Profil", "page": "femme-de-chambre", "x": 1736, "y": 1174, "w": 768, "h": 1024 }
   ],
   "launch": { "view": "canvas", "page": "gouvernante" }
 }

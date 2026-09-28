@@ -11,6 +11,17 @@
 
 Welcome to your Remotion project!
 
+## M'EyeBus compositions
+
+| ID | Description | Rendu |
+| --- | --- | --- |
+| `MEyeBusSpot3D` | Spot motion design 100 % 3D (ville low-poly, bus sur une route en « M », caméra animée, 9:16, 48 s) | `npx remotion render MEyeBusSpot3D out/spot-3d.mp4 --gl=swangle` |
+| `MEyeBusStory` | Storytelling (problème → solution, 4 personas) avec sous-titres | `npx remotion render MEyeBusStory --gl=swangle` |
+| `MEyeBusDemo` | Démo produit (écrans de l'app) | `npx remotion render MEyeBusDemo` |
+
+Sur une machine avec GPU, remplacez `--gl=swangle` par `--gl=angle` pour un rendu plus rapide.
+Le code du spot 3D est dans `src/meyebus3d/` (`timeline.ts` = scènes, route et caméra ; `Spot3D.tsx` = textes et cartes).
+
 ## Commands
 
 **Install Dependencies**

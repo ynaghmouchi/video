@@ -8,7 +8,7 @@ import { COLORS } from "../../meyebus/theme";
 import { busState, cameraPose, SCENES, HOME_POS, SCHOOL_POS, type Pose } from "../timeline";
 import { RouteGlow } from "../Road";
 import { BusPro, PinPro } from "./BusPro";
-import { MRoadPro, StreetPro } from "./RoadPro";
+import { MRoadPro, StreetPro, RouteSignature } from "./RoadPro";
 import { GroundPro, LotsPro, HousePro, TreePro, SchoolPro, BusStopPro, LampsPro, CarsPro, CloudsPro } from "./CityPro";
 import { KidsPro } from "./KidsPro";
 import { SkyDome } from "./SkyDome";
@@ -82,6 +82,9 @@ const WorldPro: React.FC = () => {
   const pinScale = interpolate(frame, [SCENES.driver.from, SCENES.driver.from + 30, SCENES.school.from, SCENES.school.from + 40], [1, 0.65, 0.65, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   const stopArm = interpolate(frame, [SCENES.students.from + 8, SCENES.students.from + 30, SCENES.students.from + 150, SCENES.students.from + 172], [0, 1, 1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
 
+  const sign = interpolate(frame, [SCENES.outro.from + 35, SCENES.outro.from + 105], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const navy = interpolate(frame, [SCENES.outro.from + 60, SCENES.outro.from + 110], [0, 1], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+
   const fwd = bus.tangent.clone();
   const right = new THREE.Vector3(-fwd.z, 0, fwd.x);
   const door = bus.pos.clone().add(fwd.multiplyScalar(0.95)).add(right.multiplyScalar(0.8));
@@ -122,6 +125,7 @@ const WorldPro: React.FC = () => {
       </group>
 
       <RouteGlow t={bus.t} length={0.16} opacity={glow} />
+      {frame >= SCENES.outro.from ? <RouteSignature progress={sign} navy={navy} /> : null}
       <BusPro position={bus.pos} yaw={bus.yaw} dist={bus.dist} frame={frame} stopArm={stopArm} lights={0.6 + dawn * 0.6} />
       <PinPro position={bus.pos} frame={frame} drop={drop} scale={pinScale} />
 

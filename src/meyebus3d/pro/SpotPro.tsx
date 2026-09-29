@@ -3,7 +3,8 @@ import * as THREE from "three";
 import { AbsoluteFill, Sequence, useCurrentFrame, useVideoConfig, interpolate } from "remotion";
 import { COLORS } from "../../meyebus/theme";
 import { ScenePro, sunDirection, dawnAmount } from "./ScenePro";
-import { Headline, WorldCard, busPoint, Questions, LogoReveal, BrandFooter, Stats, Outro } from "../overlays";
+import { Headline, WorldCard, busPoint, Questions, LogoReveal, BrandFooter, Stats } from "../overlays";
+import { OutroPro } from "./OutroPro";
 import { SCENES, HOME_POS, STOP_POS, SCHOOL_POS, busState, cameraPose, projectToScreen } from "../timeline";
 
 export { SPOT_FRAMES } from "../timeline";
@@ -22,7 +23,7 @@ const PostFX: React.FC = () => {
   const sun = projectToScreen(pose.pos.clone().add(sunDirection(dawn).multiplyScalar(500)), pose, width, height);
   const inFrame = sun.visible && sun.x > -300 && sun.x < width + 300 && sun.y > -300 && sun.y < height + 300;
   const flare = inFrame ? 0.35 + dawn * 0.45 : 0;
-  const dim = interpolate(frame, [S.outro.from + 70, S.outro.from + 110], [1, 0.4], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  const dim = interpolate(frame, [S.outro.from + 100, S.outro.from + 140], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
   return (
     <AbsoluteFill style={{ pointerEvents: "none" }}>
       {flare > 0 ? (
@@ -95,10 +96,10 @@ export const MEyeBusSpot3DPro: React.FC = () => {
       </Sequence>
 
       <Sequence from={S.outro.from} durationInFrames={S.outro.dur} name="Outro">
-        <Sequence durationInFrames={110}>
-          <Headline title="Un trajet. Une seule vérité, pour tous." dur={110} />
+        <Sequence durationInFrames={100}>
+          <Headline title="Un trajet. Une seule vérité, pour tous." dur={100} />
         </Sequence>
-        <Outro />
+        <OutroPro />
       </Sequence>
     </AbsoluteFill>
   );

@@ -81,7 +81,7 @@ export const MRoadPro: React.FC = () => {
         <meshStandardMaterial color="#E8E6DE" roughness={0.7} />
       </mesh>
       {dashes.map((d, i) => (
-        <mesh key={i} position={[d.p.x, 0.033, d.p.z]} rotation={[0, d.yaw, 0]}>
+        <mesh key={i} position={[d.p.x, 0.05, d.p.z]} rotation={[0, d.yaw, 0]}>
           <boxGeometry args={[0.6, 0.01, 0.12]} />
           <meshStandardMaterial color={COLORS.orange} roughness={0.6} />
         </mesh>
@@ -140,3 +140,46 @@ export const StreetPro: React.FC<{ from: [number, number]; to: [number, number] 
 };
 
 export const stopSidewalkPoint = () => new THREE.Vector3(STOP_POS.x, 0.1, STOP_POS.z + ROAD_W / 2 + 0.7);
+
+// Orange light that "signs" the M from start to end, then a navy tint that
+// turns the asphalt into the badge's road.
+export const RouteSignature: React.FC<{ progress: number; navy: number }> = ({ progress, navy }) => {
+  const full = useMemo(() => {
+    const { pts, tans } = routeSamples();
+    return ribbonGeometry(pts, ROAD_W, 0.04, tans);
+  }, []);
+  const trace = useMemo(() => {
+    const n = Math.max(2, Math.round(progress * 200));
+    const pts: THREE.Vector3[] = [];
+    const tans: THREE.Vector3[] = [];
+    for (let i = 0; i < n; i++) {
+      const u = (i / (n - 1)) * progress;
+      pts.push(ROUTE.getPointAt(u));
+      tans.push(ROUTE.getTangentAt(u));
+    }
+    return ribbonGeometry(pts, 0.9, 0.045, tans);
+  }, [progress]);
+  const head = ROUTE.getPointAt(Math.min(1, progress));
+  return (
+    <group>
+      {navy > 0 ? (
+        <mesh geometry={full}>
+          <meshStandardMaterial color={COLORS.navy} transparent opacity={navy * 0.94} roughness={0.7} depthWrite={false} />
+        </mesh>
+      ) : null}
+      {progress > 0.005 && progress < 1.2 ? (
+        <>
+          <mesh geometry={trace}>
+            <meshBasicMaterial color="#FFB25A" transparent opacity={0.9 * (1 - navy * 0.5)} depthWrite={false} />
+          </mesh>
+          {progress < 1 ? (
+            <mesh position={[head.x, 0.3, head.z]}>
+              <sphereGeometry args={[0.45, 16, 12]} />
+              <meshBasicMaterial color="#FFE2B0" transparent opacity={0.95} />
+            </mesh>
+          ) : null}
+        </>
+      ) : null}
+    </group>
+  );
+};

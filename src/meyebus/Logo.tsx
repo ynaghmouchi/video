@@ -7,18 +7,18 @@ import { COLORS, FONT } from "./theme";
 // and an orange school bus driving up a navy "M"-shaped road with
 // orange dashed lane markings.
 
-const SHIELD =
+export const SHIELD =
   "M64 30 Q150 15 236 30 Q257 35 257 64 L257 152 Q257 256 150 324 Q43 256 43 152 L43 64 Q43 35 64 30 Z";
-const ROAD =
+export const ROAD =
   "M112 280 C 114 240 118 206 134 184 C 144 202 148 232 150 246 C 152 232 156 202 166 184 C 182 206 186 240 188 280";
 
 const CX = 150;
 const CY = 178;
-const scaleAbout = (s: number) =>
+export const scaleAbout = (s: number) =>
   `translate(${CX * (1 - s)} ${CY * (1 - s)}) scale(${s})`;
 
 // Orange location pin used as the apostrophe of M'EyeBus.
-const Pin: React.FC<{ w: number }> = ({ w }) => (
+export const Pin: React.FC<{ w: number }> = ({ w }) => (
   <svg width={w} height={(w * 32) / 24} viewBox="0 0 24 32" fill="none" style={{ display: "block" }}>
     <path d="M12 0.5 C5.4 0.5 0.5 5.4 0.5 12 C0.5 20 12 31.5 12 31.5 C12 31.5 23.5 20 23.5 12 C23.5 5.4 18.6 0.5 12 0.5 Z" fill={COLORS.orange} />
     <circle cx="12" cy="12" r="4.6" fill="#FFFFFF" />
@@ -58,18 +58,23 @@ export const LogoMark: React.FC<{ size?: number; showText?: boolean }> = ({
       <path d={ROAD} fill="none" stroke={COLORS.orange} strokeWidth="5" strokeLinecap="round" strokeDasharray="5 14" />
 
       {/* orange school bus driving up the right ramp */}
-      <g transform="translate(176 166) rotate(-20)">
-        <rect x="-30" y="-17" width="60" height="33" rx="8" fill={COLORS.orange} stroke={COLORS.navy} strokeWidth="3.5" />
-        <rect x="-23" y="-10" width="38" height="12" rx="3" fill="#FFFFFF" />
-        <line x1="-10" y1="-10" x2="-10" y2="2" stroke={COLORS.navy} strokeWidth="2.5" />
-        <line x1="3" y1="-10" x2="3" y2="2" stroke={COLORS.navy} strokeWidth="2.5" />
-        <rect x="19" y="-6" width="7" height="8" rx="2" fill="#FFFFFF" />
-        <circle cx="-15" cy="16" r="6" fill={COLORS.navy} />
-        <circle cx="15" cy="16" r="6" fill={COLORS.navy} />
-      </g>
+      <LogoBus />
     </svg>
   );
 };
+
+// The little bus on the badge's right ramp (logo coordinates).
+export const LogoBus: React.FC<{ opacity?: number }> = ({ opacity = 1 }) => (
+  <g transform="translate(176 166) rotate(-20)" opacity={opacity}>
+    <rect x="-30" y="-17" width="60" height="33" rx="8" fill={COLORS.orange} stroke={COLORS.navy} strokeWidth="3.5" />
+    <rect x="-23" y="-10" width="38" height="12" rx="3" fill="#FFFFFF" />
+    <line x1="-10" y1="-10" x2="-10" y2="2" stroke={COLORS.navy} strokeWidth="2.5" />
+    <line x1="3" y1="-10" x2="3" y2="2" stroke={COLORS.navy} strokeWidth="2.5" />
+    <rect x="19" y="-6" width="7" height="8" rx="2" fill="#FFFFFF" />
+    <circle cx="-15" cy="16" r="6" fill={COLORS.navy} />
+    <circle cx="15" cy="16" r="6" fill={COLORS.navy} />
+  </g>
+);
 
 export const Wordmark: React.FC<{ size?: number; color?: string }> = ({
   size = 64,

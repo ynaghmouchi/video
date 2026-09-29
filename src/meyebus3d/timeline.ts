@@ -53,8 +53,8 @@ export const BUS_START = ROUTE.getPointAt(0);
 export const busProgress = (frame: number): number =>
   interpolate(
     frame,
-    [0, 150, 300, 450, 630, 790, 960, 1140, 1290, SPOT_FRAMES],
-    [0, 0.015, 0.04, 0.2, STOP_T, STOP_T, 0.7, 0.86, 1, 1],
+    [0, 150, 300, 450, 630, 790, 960, 1140, 1240, SPOT_FRAMES],
+    [0, 0.015, 0.04, 0.2, STOP_T, STOP_T, 0.66, 0.74, 0.8, 0.8],
     {
       easing: Easing.inOut(Easing.quad),
       extrapolateLeft: "clamp",
@@ -135,8 +135,8 @@ const KEYS: Key[] = [
   { f: 1060, pose: abs([0, 30, 22], [0, 0, -1], 44), easing: smooth },
   { f: 1140, pose: abs([0, 30, 22], [0, 0, -1], 44), easing: smooth },
   // Outro: top-down, the "M" road reads like the logo.
-  { f: 1230, pose: abs([0, 44, 0.5], [0, 0, 0], 42), easing: smooth },
-  { f: SPOT_FRAMES, pose: abs([0, 40, 0.5], [0, 0, 0], 42) },
+  { f: 1230, pose: abs([0, 36, 0.5], [0, 0, 0], 42), easing: smooth },
+  { f: SPOT_FRAMES, pose: abs([0, 36, 0.5], [0, 0, 0], 42) },
 ];
 
 export const cameraPose = (frame: number, bus: BusState): Pose => {
@@ -185,3 +185,7 @@ export const mulberry32 = (seed: number) => () => {
   t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
   return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
 };
+
+// Camera pose during the logo transition (top-down, static).
+export const OUTRO_LOCK_FRAME = 1230;
+export const outroPose = (): Pose => cameraPose(OUTRO_LOCK_FRAME, busState(OUTRO_LOCK_FRAME));

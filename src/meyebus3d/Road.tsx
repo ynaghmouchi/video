@@ -9,19 +9,27 @@ export const ribbonGeometry = (
   width: number,
   y: number,
   tangents?: THREE.Vector3[],
+  offset = 0, // lateral shift (positive = left of the direction of travel)
+  uvScale = 4, // world units per texture repeat along the ribbon
 ): THREE.BufferGeometry => {
   const pos: number[] = [];
+  const uv: number[] = [];
   const idx: number[] = [];
   const up = new THREE.Vector3(0, 1, 0);
+  let len = 0;
   for (let i = 0; i < points.length; i++) {
     const p = points[i];
     const prev = points[Math.max(0, i - 1)];
     const next = points[Math.min(points.length - 1, i + 1)];
+    if (i > 0) len += p.distanceTo(prev);
     const tan = tangents ? tangents[i].clone() : next.clone().sub(prev);
     if (tan.lengthSq() < 1e-8) tan.set(1, 0, 0);
     tan.normalize();
-    const side = new THREE.Vector3().crossVectors(tan, up).normalize().multiplyScalar(width / 2);
-    pos.push(p.x + side.x, y, p.z + side.z, p.x - side.x, y, p.z - side.z);
+    const side = new THREE.Vector3().crossVectors(tan, up).normalize();
+    const l = side.clone().multiplyScalar(offset + width / 2);
+    const r = side.clone().multiplyScalar(offset - width / 2);
+    pos.push(p.x + l.x, y, p.z + l.z, p.x + r.x, y, p.z + r.z);
+    uv.push(len / uvScale, 0, len / uvScale, 1);
     if (i > 0) {
       const a = (i - 1) * 2;
       // counter-clockwise seen from above, so the face normal points up (+y)
@@ -30,6 +38,7 @@ export const ribbonGeometry = (
   }
   const g = new THREE.BufferGeometry();
   g.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
+  g.setAttribute("uv", new THREE.Float32BufferAttribute(uv, 2));
   g.setIndex(idx);
   g.computeVertexNormals();
   return g;

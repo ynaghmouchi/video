@@ -106,7 +106,7 @@ const orbit =
     });
     return {
       pos: bus.pos.clone().add(v(Math.sin(u) * radius, height, Math.cos(u) * radius)),
-      look: bus.pos.clone().add(v(0, 0.2, 0)),
+      look: bus.pos.clone().add(v(0, 0.9, 0)),
       fov,
     };
   };
@@ -120,8 +120,8 @@ const KEYS: Key[] = [
   { f: 230, pose: abs([-21.5, 8.5, 16.5], [-13.2, 0.8, 5.2], 40), easing: Easing.inOut(Easing.quad) },
   { f: 300, pose: abs([-21, 8, 15.5], [-13.4, 0.8, 5.4], 40), easing: smooth },
   // Reveal: orbit around the bus while the pin drops.
-  { f: 360, pose: orbit(8, 3.8, 1.0, -0.4), easing: smooth },
-  { f: 450, pose: orbit(8, 3.8, 1.0, -0.4), easing: smooth },
+  { f: 360, pose: orbit(9, 4.2, 1.0, -0.4), easing: smooth },
+  { f: 450, pose: orbit(9, 4.2, 1.0, -0.4), easing: smooth },
   // Parents: follow from the side / above.
   { f: 520, pose: rel([1.5, 6, 9.5], [0, 0.5, 0], 40), easing: smooth },
   { f: 630, pose: rel([1.5, 6, 9.5], [0, 0.5, 0], 40), easing: smooth },

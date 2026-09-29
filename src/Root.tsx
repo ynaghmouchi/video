@@ -3,10 +3,21 @@ import { Composition } from "remotion";
 import { MEyeBusDemo, TOTAL_FRAMES } from "./meyebus/Demo";
 import { MEyeBusStory, STORY_FRAMES } from "./meyebus/Story";
 import { MEyeBusSpot3D, SPOT_FRAMES } from "./meyebus3d/Spot3D";
+import { MEyeBusSpot3DPro } from "./meyebus3d/pro/SpotPro";
 
 export const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        // Realistic variant: PBR materials, shadows, procedural textures, sky dome.
+        // Render with: npx remotion render MEyeBusSpot3DPro --gl=swangle
+        id="MEyeBusSpot3DPro"
+        component={MEyeBusSpot3DPro}
+        durationInFrames={SPOT_FRAMES}
+        fps={30}
+        width={1080}
+        height={1920}
+      />
       <Composition
         // Full 3D motion-design spot (low-poly world, animated camera).
         // Render with: npx remotion render MEyeBusSpot3D --gl=swangle

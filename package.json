@@ -6,8 +6,11 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
+    "@fontsource/bangers": "^5.3.0",
+    "@fontsource/luckiest-guy": "^5.3.0",
     "@react-three/fiber": "^9.6.1",
     "@remotion/cli": "4.0.469",
+    "@remotion/fonts": "^4.0.469",
     "@remotion/tailwind-v4": "4.0.469",
     "@remotion/three": "^4.0.469",
     "@remotion/transitions": "^4.0.469",
@@ -35,6 +38,7 @@
     "lint": "eslint src && tsc"
   },
   "sideEffects": [
-    "*.css"
+    "*.css",
+    "src/beerflood/fonts.ts"
   ]
 }

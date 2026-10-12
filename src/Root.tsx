@@ -3,6 +3,7 @@ import { Composition } from "remotion";
 import { MEyeBusDemo, TOTAL_FRAMES } from "./meyebus/Demo";
 import { MEyeBusStory, STORY_FRAMES } from "./meyebus/Story";
 import { TestShort, TEST_SHORT_FPS, TEST_SHORT_FRAMES } from "./test/TestShort";
+import { BeerFlood, BEERFLOOD_FPS, BEERFLOOD_FRAMES } from "./beerflood/BeerFlood";
 
 export const RemotionRoot: React.FC = () => {
   return (
@@ -14,6 +15,16 @@ export const RemotionRoot: React.FC = () => {
         component={MEyeBusStory}
         durationInFrames={STORY_FRAMES}
         fps={30}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        // "Mr Coyote"-style explainer short: London beer flood, 1814.
+        // Render with: npx remotion render BeerFlood out/beerflood.mp4
+        id="BeerFlood"
+        component={BeerFlood}
+        durationInFrames={BEERFLOOD_FRAMES}
+        fps={BEERFLOOD_FPS}
         width={1080}
         height={1920}
       />
